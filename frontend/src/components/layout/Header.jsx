@@ -14,7 +14,7 @@ const Header = () => {
   };
 
   return (
-    <header className="max-padd-header bg-white dark:bg-secondary fixed top-0 left-0 right-0 shadow-custom">
+    <header className="max-padd-header bg-white dark:bg-secondary fixed top-0 left-0 right-0 shadow-custom ">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <Link to={"/"} className="flex flex-1">
