@@ -1,0 +1,15 @@
+<svg width="250" height="60" viewBox="0 0 250 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icône du code à gauche -->
+  <rect x="0" y="10" width="40" height="40" rx="8" fill="#10B981"/>
+  <text x="6.5" y="37" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="white">{ }</text>
+
+  <!-- Texte "Market" -->
+  <text x="50" y="45" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#1A1A1A">
+    Market
+  </text>
+  
+  <!-- Texte "Dev" -->
+  <text x="175" y="45" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#10B981">
+    Dev
+  </text>
+</svg>

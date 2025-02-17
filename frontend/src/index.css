@@ -1,0 +1,132 @@
+/* Import de la police Inter */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+/* Import de Tailwind */
+@import "tailwindcss";
+
+/* Thème avec les couleurs et breakpoints personnalisés */
+@theme {
+  --color-primary: oklch(69.59% 0.1491 162.48);
+  --color-secondary: oklch(21.01% 0.0318 264.66);
+
+  /* Gris */
+  --color-gray-40: oklch(71.37% 0.0192 261.32);
+  --color-gray-50: oklch(55.1% 0.0234 264.36);
+}
+
+/* Reset des styles de base */
+* {
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Personnalisation de la scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+  border: 1px solid oklch(59.99% 0 0 / 18.43%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(92.49% 0 0);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(84.52% 0 0);
+}
+
+/* Ombres */
+.shadow-custom {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.shadow-footer {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px -8px 24px;
+}
+
+/* Typographie */
+.h1 {
+  @apply text-5xl font-semibold text-secondary dark:text-white;
+}
+
+.h2 {
+  @apply text-4xl md:text-5xl font-bold text-secondary dark:text-white;
+}
+
+.h3 {
+  @apply text-lg font-semibold text-secondary dark:text-white mb-3;
+}
+
+p {
+  @apply leading-[1.3] text-[14px];
+}
+
+/* Boutons */
+.btn-primary {
+  @apply bg-primary;
+}
+
+.btn-secondary {
+  @apply bg-primary;
+}
+
+/* Layout */
+.section {
+  @apply flex items-center justify-center flex-auto mt-30 mb-15 bg-white dark:bg-secondary;
+}
+
+/* Header & Footer */
+.max-padd-header {
+  @apply w-full px-6 md:px-12 lg:px-20 xl:px-32 py-4 mx-auto;
+}
+
+.max-padd-footer {
+  @apply w-full px-6 md:px-12 lg:px-20 xl:px-32  pt-8 mx-auto text-gray-900 dark:text-white;
+}
+
+/* Conteneur principal */
+.max-padd-container {
+  @apply mx-auto max-w-[1440px] px-6 lg:px-12 py-4;
+}
+
+/*********** Footer ***********/
+/* Liens */
+.footer-link {
+  @apply text-gray-40 hover:text-primary transition-all duration-300 text-sm;
+}
+
+/* Réseaux sociaux */
+.footer-social-link {
+  @apply text-3xl hover:text-primary transition-all duration-300;
+}
+
+/* Copyright */
+.footer-copyright {
+  @apply flex items-center justify-center py-4 text-gray-50 text-sm text-center;
+}
+
+/* Bouton principal */
+.btn-primary {
+  @apply bg-primary text-white rounded-full font-semibold px-6 py-3 mt-4 hover:bg-white dark:hover:bg-secondary hover:text-secondary dark:hover:text-white hover:ring dark:hover:ring-white focus:ring-2 focus:ring-slate-900 transition-all duration-300 ease-in-out;
+}
