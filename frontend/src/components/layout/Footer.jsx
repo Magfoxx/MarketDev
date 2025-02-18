@@ -31,7 +31,7 @@ const Footer = () => {
 
         {/* Colonne 2 - Liens utiles */}
         <div className="p-6">
-          <h3 className="h3"> Liens utiles</h3>
+          <h4 className="h4"> Liens utiles</h4>
           <ul className="mt-3 space-y-2">
             <li>
               <Link to="/" className="footer-link">
@@ -58,14 +58,14 @@ const Footer = () => {
 
         {/* Colonne 3 - Contact & Réseaux sociaux */}
         <div className="p-6">
-          <h3 className="h3">Contact</h3>
+          <h4 className="h4">Contact</h4>
           <p className="flex items-center gap-2 mt-3 text-gray-40">
             <FaEnvelope className="text-primary" />
             <span>contact-market-dev@gmail.com</span>
           </p>
           {/* Liens vers les réseaux sociaux */}
           <div className="mt-6">
-            <h3 className="h3">Suivez-moi</h3>
+            <h4 className="h4">Suivez-moi</h4>
             <div className="flex gap-4 mt-3">
               <Link
                 to="https://www.linkedin.com/in/martial-hamcha"

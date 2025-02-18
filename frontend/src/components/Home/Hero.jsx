@@ -18,12 +18,12 @@ const Hero = () => {
       <div className="max-w-3xl mt-8 text-gray-600 dark:text-gray-300 leading-relaxed space-y-6 text-justify">
         <p>
           Bienvenue sur{" "}
-          <span className="font-bold">
+          <span className="font-bold text-secondary dark:text-white">
             Market<span className="text-primary">Dev</span>
           </span>
           , la plateforme qui vous donne la parole ! Vous avez un projet digital
           en tête ou souhaitez améliorer votre présence en ligne ? Chez{" "}
-          <span className="font-bold">
+          <span className="font-bold text-secondary dark:text-white">
             Market<span className="text-primary">Dev</span>
           </span>
           , nous analysons vos besoins afin de proposer des solutions web
@@ -31,8 +31,8 @@ const Hero = () => {
         </p>
 
         <p>
-          En répondant à notre questionnaire, vous contribuez à une{" "}
-          <span className="font-bold">étude de marché</span> qui nous permettra
+          En répondant à ce questionnaire, vous contribuez à une{" "}
+          <span className="font-bold">étude de marché</span> qui me permettra
           de mieux comprendre vos besoins en matière de développement web :
           création de site, refonte, e-commerce, SEO et solutions sur mesure.
         </p>
