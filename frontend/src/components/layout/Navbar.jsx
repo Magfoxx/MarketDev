@@ -15,11 +15,11 @@ const Navbar = ({ containerStyles, closeMenu }) => {
           key={link.title}
           to={link.path}
           className={({ isActive }) =>
-            `relative px-3 py-2 rounded-full transition-all duration-500 text-gray-40
+            `relative px-3 py-2 rounded-full transition-all duration-500 text-secondary dark:text-white 
              hover:text-primary xl:hover:after:w-full 
              ${
                isActive
-                 ? "text-secondary dark:text-white xl:after:w-full font-semibold"
+                 ? "!text-primary xl:after:w-full font-semibold"
                  : "xl:after:w-0"
              }
              xl:after:content-[''] xl:after:absolute xl:after:left-0 xl:after:-bottom-3 xl:after:h-[4px] 
@@ -27,7 +27,9 @@ const Navbar = ({ containerStyles, closeMenu }) => {
           }
           onClick={closeMenu}
         >
-          <div className="flex items-center justify-center gap-x-1">{link.title}</div>
+          <div className="flex items-center justify-center gap-x-1">
+            {link.title}
+          </div>
         </NavLink>
       ))}
     </nav>

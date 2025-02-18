@@ -8,7 +8,7 @@ const NotFound = () => {
       <h3 className="text-2xl mt-2 text-secondary dark:text-white font-semibold uppercase tracking-wide">Page introuvable</h3>
       
       {/* Texte explicatif */}
-      <p className="mt-4 text-gray-40 max-w-[500px] text-center">
+      <p className="mt-4 text-gray-500 dark:text-white max-w-[500px] text-center">
         Désolé, la page que vous cherchez semble introuvable. Retournez à l'accueil pour continuer votre navigation.
       </p>
 

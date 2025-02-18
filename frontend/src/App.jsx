@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Footer from "./components/layout/Footer";
 import NotFound from "./pages/NotFound";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const location = useLocation();
@@ -18,7 +19,8 @@ function App() {
     <>
       {/* Afficher le Header seulement si ce n'est pas la page 404 */}
       {!isNotFoundPage && <Header />}
-      <main className="pt-[var(--header-height)] bg-white dark:bg-secondary">
+      <main className="pt-[var(--header-height)] bg-gray-100 dark:bg-secondary">
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/a-propos" element={<About />} />

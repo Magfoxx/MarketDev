@@ -8,9 +8,9 @@ import {
 
 const AboutPresentation = () => {
   return (
-    <div className="flex flex-col-reverse md:flex-row items-center gap-12 bg-gray-100 dark:bg-gray-800 rounded-xl px-6 py-8 ">
+    <div className="flex flex-col-reverse md:flex-row items-center gap-12 bg-gray-200 dark:bg-gray-800 rounded-xl px-6 py-8 ">
             {/* Compétences */}
-            <div className="flex-1 text-center p-6 rounded-lg shadow-lg bg-white dark:bg-secondary">
+            <div className="flex-1 text-center p-6 rounded-lg bg-gray-100 dark:bg-secondary">
         <h4 className="h4">Mes compétences</h4>
         <div className="grid grid-cols-3 md:grid-cols-4 gap-6 text-gray-700 text-5xl md:text-4xl">
           <div className="flex flex-col items-center">
@@ -51,7 +51,7 @@ const AboutPresentation = () => {
       {/* Présentation */}
       <div className="flex-2 text-center">
         <h4 className="h4 text-center">Qui Suis-je ?</h4>
-        <p className="text-secondary dark:text-gray-40 md:text-left">
+        <p className="text-secondary dark:text-gray-300 md:text-left">
           Je m'appelle <span className="font-bold">Martial Hamcha</span>,
           développeur web passionné et futur freelance spécialisé dans la
           création d'applications et de sites web modernes. Depuis plusieurs

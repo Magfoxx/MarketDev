@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="max-padd-container flex flex-col items-center text-center">
+    <div className="max-padd-container flex flex-col items-center text-center bg-gray-100 dark:bg-secondary">
       {/* Titre principal */}
       <div className="max-w-4xl">
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-secondary dark:text-white">
@@ -40,14 +40,14 @@ const Hero = () => {
 
       {/* Liste des avantages */}
       <div className="max-w-4xl mt-12">
-        <h3 className="text-2xl font-semibold text-secondary dark:text-white mb-6">
+        <h2 className="text-2xl font-semibold text-secondary dark:text-white mb-6">
           Pourquoi répondre à ce questionnaire ?
-        </h3>
+        </h2>
         <ul className="flex flex-col gap-6 text-gray-700 dark:text-gray-300">
           {avantages.map((item) => (
             <li
               key={item.id}
-              className="flex items-center gap-4 p-5 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:bg-primary/20 dark:hover:bg-primary/30 transition-all duration-500"
+              className="flex items-center gap-4 p-5 bg-gray-200 dark:bg-gray-800 rounded-lg shadow-md hover:bg-primary/20 dark:hover:bg-primary/30 transition-all duration-500"
             >
               <span className="text-gray-700 dark:text-gray-200 font-medium text-lg">
                 {item.text}

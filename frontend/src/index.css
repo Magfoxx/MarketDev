@@ -45,11 +45,11 @@ main {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-white dark:bg-secondary;
+  @apply bg-gray-100 dark:bg-secondary;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary dark:bg-primary rounded-full
+  @apply bg-primary dark:bg-primary rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -79,11 +79,11 @@ main {
 }
 
 .h4 {
-  @apply text-xl font-semibold text-secondary dark:text-white mb-3
+  @apply text-xl font-semibold text-secondary dark:text-white mb-3;
 }
 
 .h5 {
-  @apply text-[18px] font-semibold text-secondary dark:text-white mb-3
+  @apply text-[18px] font-semibold text-secondary dark:text-white mb-3;
 }
 
 p {
@@ -92,12 +92,12 @@ p {
 
 /* Boutons */
 .btn-primary {
-  @apply bg-primary text-white rounded-full font-semibold px-6 py-3 mt-4 hover:bg-white dark:hover:bg-secondary hover:text-secondary dark:hover:text-white hover:ring dark:hover:ring-white focus:ring-2 focus:ring-slate-900 transition-all duration-300 ease-in-out;
+  @apply bg-primary text-white rounded-full font-semibold px-6 py-3 mt-4 hover:bg-white dark:hover:bg-secondary hover:text-secondary dark:hover:text-white hover:ring dark:hover:ring-white focus:ring-2 focus:ring-slate-900 transition-all duration-300 ease-in-out cursor-pointer;
 }
 
 /* Layout */
 .section {
-  @apply flex items-center justify-center flex-auto my-15 bg-white dark:bg-secondary;
+  @apply flex items-center justify-center flex-auto my-15 bg-gray-100 dark:bg-secondary;
 }
 
 /* Header & Footer */
@@ -106,7 +106,7 @@ p {
 }
 
 .max-padd-footer {
-  @apply min-w-full w-full px-6 md:px-12 lg:px-20 xl:px-32  pt-8 mx-auto text-gray-900 dark:text-white;
+  @apply min-w-full w-full px-6 md:px-12 lg:px-20 xl:px-32  pt-8 mx-auto text-gray-700 dark:text-white;
 }
 
 /* Conteneur principal */
@@ -117,7 +117,7 @@ p {
 /*********** Footer ***********/
 /* Liens */
 .footer-link {
-  @apply text-gray-40 hover:text-primary transition-all duration-300 text-sm;
+  @apply text-gray-700 dark:text-white hover:text-primary transition-all duration-300 text-sm;
 }
 
 /* Réseaux sociaux */
@@ -127,5 +127,5 @@ p {
 
 /* Copyright */
 .footer-copyright {
-  @apply flex items-center justify-center py-4 text-gray-50 text-sm text-center;
+  @apply flex items-center justify-center py-4 text-gray-500 dark:text-gray-400 text-sm text-center;
 }

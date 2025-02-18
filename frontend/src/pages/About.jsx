@@ -5,7 +5,7 @@ import AboutSurvey from "../components/About/AboutSurvey";
 
 const About = () => {
   return (
-    <div className="">
+    <>
       <section className="section max-padd-container !mb-0">
         <AboutIntro />
       </section>
@@ -18,7 +18,7 @@ const About = () => {
       <section className="section max-padd-container">
         <AboutSurvey />
       </section>
-    </div>
+    </>
   );
 };
 

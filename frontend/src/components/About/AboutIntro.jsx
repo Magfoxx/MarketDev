@@ -6,7 +6,7 @@ const AboutIntro = () => {
       <h2 className="h2">
         À propos de Market<span className="text-primary">Dev</span>
       </h2>
-      <p className="text-secondary dark:text-gray-40 mt-6 py-6">
+      <p className="text-secondary dark:text-gray-300 mt-6 py-6">
         <span className="font-bold text-secondary dark:text-white">
           Market<span className="text-primary">Dev</span>
         </span>{" "}

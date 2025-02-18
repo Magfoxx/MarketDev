@@ -1,11 +1,13 @@
-import React from 'react'
+import ContactForm from "../components/Contact/ContactForm";
 
 const Contact = () => {
   return (
-    <section className='section max-padd-container'>
-    Contact
-  </section>
-  )
-}
+    <>
+      <section className="section max-padd-container">
+        <ContactForm />
+      </section>
+    </>
+  );
+};
 
-export default Contact
+export default Contact;

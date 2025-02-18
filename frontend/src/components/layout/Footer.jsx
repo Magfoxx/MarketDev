@@ -5,7 +5,7 @@ import LogoLight from "../../assets/logoLight.svg";
 
 const Footer = () => {
   return (
-    <footer className="max-padd-footer bg-white dark:bg-secondary shadow-footer">
+    <footer className="max-padd-footer bg-white dark:bg-gray-800 ring-1 ring-secondary dark:ring-white">
       <div className="grid grid-cols-1 md:grid-cols-3">
         {/* Colonne 1 - Logo + description */}
         <div className="flex flex-col justify-start  items-start p-6">
@@ -23,7 +23,7 @@ const Footer = () => {
             />
           </div>
           {/* Paragraphe centré avec largeur limitée */}
-          <p className="text-gray-40 text-sm leading-relaxed max-w-[300px] mb-3">
+          <p className="text-sm leading-relaxed max-w-[300px] mb-3">
             Votre partenaire pour une présence en ligne performante et
             impactante.
           </p>
@@ -31,7 +31,7 @@ const Footer = () => {
 
         {/* Colonne 2 - Liens utiles */}
         <div className="p-6">
-          <h4 className="h4"> Liens utiles</h4>
+          <h3 className="h4"> Liens utiles</h3>
           <ul className="mt-3 space-y-2">
             <li>
               <Link to="/" className="footer-link">
@@ -58,18 +58,19 @@ const Footer = () => {
 
         {/* Colonne 3 - Contact & Réseaux sociaux */}
         <div className="p-6">
-          <h4 className="h4">Contact</h4>
-          <p className="flex items-center gap-2 mt-3 text-gray-40">
+          <h3 className="h4">Contact</h3>
+          <p className="flex items-center gap-2 mt-3">
             <FaEnvelope className="text-primary" />
             <span>contact-market-dev@gmail.com</span>
           </p>
           {/* Liens vers les réseaux sociaux */}
           <div className="mt-6">
-            <h4 className="h4">Suivez-moi</h4>
+            <h3 className="h4">Suivez-moi</h3>
             <div className="flex gap-4 mt-3">
               <Link
                 to="https://www.linkedin.com/in/martial-hamcha"
                 target="_blank"
+                aria-label="Lien Linkedin"
                 className="footer-social-link"
               >
                 <FaLinkedin />
@@ -77,6 +78,7 @@ const Footer = () => {
               <Link
                 to="https://github.com/Magfoxx"
                 target="_blank"
+                aria-label="Lien Github"
                 className="footer-social-link"
               >
                 <FaGithub />
@@ -88,7 +90,7 @@ const Footer = () => {
 
       {/* Section Copyright */}
       <div className="footer-copyright">
-        <p className="text-gray-50 text-sm text-center">
+        <p className="text-sm text-center">
           © {new Date().getFullYear()} MarketDev. Tous droits réservés.
         </p>
       </div>

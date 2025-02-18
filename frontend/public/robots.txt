@@ -1,0 +1,14 @@
+# Permet à tous les robots d'accéder au site
+User-agent: *
+
+# Interdire l'accès à certaines pages sensibles
+Disallow: /admin/
+Disallow: /private/
+Disallow: /login/
+Disallow: /register/
+
+# Permet tout le reste
+Allow: /
+
+# Lien vers le fichier Sitemap (à adapter selon ton domaine)
+Sitemap: https://www.ton-site.com/sitemap.xml
