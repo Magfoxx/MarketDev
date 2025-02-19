@@ -6,13 +6,13 @@ import AboutSurvey from "../components/About/AboutSurvey";
 const About = () => {
   return (
     <>
-      <section className="section max-padd-container !mb-0">
+      <section className="section max-padd-container">
         <AboutIntro />
       </section>
-      <section className="section max-padd-container !max-w-6xl !mb-4">
+      <section className="section max-padd-container !my-0">
         <AboutPresentation />
       </section>
-      <section className="section max-padd-container !max-w-4xl">
+      <section className="section max-padd-container">
         <AboutServices />
       </section>
       <section className="section max-padd-container">

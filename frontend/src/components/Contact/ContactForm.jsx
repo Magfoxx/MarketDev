@@ -35,13 +35,13 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="text-center">
-      <h2 className="h2">
+    <div className="text-center py-16">
+      <h2 className="h2 pb-6">
         Envoyez-moi un <span className="text-primary">message</span>
       </h2>
       <form
         onSubmit={handleSubmit}
-        className="space-y-6 mt-10 bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md"
+        className=" bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md space-y-6 mt-10"
       >
         {Object.keys(formData).map((champ) => (
           <div key={champ} className="text-left">

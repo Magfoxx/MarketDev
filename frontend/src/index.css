@@ -97,7 +97,7 @@ p {
 
 /* Layout */
 .section {
-  @apply flex items-center justify-center flex-auto my-15 bg-gray-100 dark:bg-secondary;
+  @apply flex items-center justify-center flex-auto mt-15 mb-20 bg-gray-100 dark:bg-secondary;
 }
 
 /* Header & Footer */
