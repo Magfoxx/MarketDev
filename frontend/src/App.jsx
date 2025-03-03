@@ -7,6 +7,7 @@ import Contact from "./pages/Contact";
 import Footer from "./components/layout/Footer";
 import NotFound from "./pages/NotFound";
 import { ToastContainer } from "react-toastify";
+import ScrollTotop from "./components/ScrollTotop";
 
 function App() {
   const location = useLocation();
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <>
+      <ScrollTotop />
       {/* Afficher le Header seulement si ce n'est pas la page 404 */}
       {!isNotFoundPage && <Header />}
       <main className="pt-[var(--header-height)] bg-gray-100 dark:bg-secondary">

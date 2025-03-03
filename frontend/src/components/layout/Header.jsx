@@ -19,17 +19,19 @@ const Header = () => {
         {/* Logo */}
         <Link to={"/"} className="flex flex-1">
           {/* Logo pour le mode clair */}
-          <img
-            src={LogoLight}
-            alt="Logo MarketDev"
-            className="block dark:hidden h-8 xl:h-10 md:h-9 "
-          />
-          {/* Logo pour le mode sombre */}
-          <img
-            src={LogoDark}
-            alt="Logo MarketDev"
-            className="hidden dark:block h-8 xl:h-10 md:h-9"
-          />
+          <h1>
+            <img
+              src={LogoLight}
+              alt="Logo MarketDev"
+              className="block dark:hidden h-8 xl:h-10 md:h-9 "
+            />
+            {/* Logo pour le mode sombre */}
+            <img
+              src={LogoDark}
+              alt="Logo MarketDev"
+              className="hidden dark:block h-8 xl:h-10 md:h-9"
+            />
+          </h1>
         </Link>
 
         {/* Navbar Desktop  */}

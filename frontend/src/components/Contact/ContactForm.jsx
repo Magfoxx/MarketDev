@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import Title from "../Title";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -36,9 +37,7 @@ const ContactForm = () => {
 
   return (
     <div className="text-center py-16">
-      <h2 className="h2 pb-6">
-        Envoyez-moi un <span className="text-primary">message</span>
-      </h2>
+      <Title title1="Envoyez-moi un " title2="message" titleStyles="h2 pb-6" />
       <form
         onSubmit={handleSubmit}
         className=" bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md space-y-6 mt-10"

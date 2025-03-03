@@ -1,9 +1,9 @@
+import Title from "../Title";
+
 const AboutIntro = () => {
   return (
     <section className="max-padd-container text-center py-16 space-y-10">
-      <h2 className="h2">
-        À propos de Market<span className="text-primary">Dev</span>
-      </h2>
+      <Title title1="À propos de Market" title2="Dev" titleStyles="h2" />
       <p className="text-secondary dark:text-gray-300 max-w-3xl mx-auto mt-16 leading-relaxed">
         <span className="font-bold text-secondary dark:text-white">
           Market<span className="text-primary">Dev</span>

@@ -1,18 +1,17 @@
 import { avantages } from "../../data/heroData";
 import { Link } from "react-router-dom";
+import Title from "../Title";
 
 const Hero = () => {
   return (
     <div className="max-padd-container flex flex-col items-center text-center bg-gray-100 dark:bg-secondary py-16 space-y-20">
       {/* Titre principal */}
-      <div className="max-w-4xl space-y-6">
-        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-secondary dark:text-white">
-          Votre métier, <span className="text-primary">votre avenir</span>.{" "}
-          <br />
-          <span className="text-gradient">Partagez vos besoins</span> pour
-          façonner le marché du web !
-        </h1>
-      </div>
+      <Title
+        title1="Votre métier, "
+        title2="votre avenir"
+        title3=". Partagez vos besoins pour façonner le marché du web !"
+        titleStyles="text-4xl md:text-6xl capitalize"
+      />
 
       {/* Texte d'explication */}
       <div className="max-w-3xl text-gray-600 dark:text-gray-300 leading-relaxed space-y-8 text-justify">
