@@ -2,9 +2,7 @@ import React from 'react'
 
 const Form = () => {
   return (
-    <section className='section max-padd-container'>
-    Formulaire
-  </section>
+    <div className=' section max-padd-container text-secondary dark:text-white text-5xl'>Questionnaire</div>
   )
 }
 

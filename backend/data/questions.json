@@ -1,0 +1,115 @@
+[
+  {
+    "section": "Identité et Contact",
+    "sectionOrder": 1,
+    "questions": [
+      {
+        "id": "1",
+        "question": "Quel est votre nom ?",
+        "type": "text",
+        "isRequired": true,
+        "order": 1,
+        "applicableTo": [
+          "auto-entrepreneur",
+          "particulier",
+          "tpe_pme",
+          "sarl_eurl_sas",
+          "grande_entreprise"
+        ]
+      },
+      {
+        "id": "2",
+        "question": "Quel est votre prénom ?",
+        "type": "text",
+        "isRequired": true,
+        "order": 2,
+        "applicableTo": [
+          "auto-entrepreneur",
+          "particulier",
+          "tpe_pme",
+          "sarl_eurl_sas",
+          "grande_entreprise"
+        ]
+      },
+      {
+        "id": "3",
+        "question": "Quel est votre email ?",
+        "type": "email",
+        "isRequired": true,
+        "unique": true,
+        "order": 3,
+        "applicableTo": [
+          "auto-entrepreneur",
+          "particulier",
+          "tpe_pme",
+          "sarl_eurl_sas",
+          "grande_entreprise"
+        ]
+      }
+    ]
+  },
+  {
+    "section": "Statut professionnel",
+    "sectionOrder": 2,
+    "questions": [
+      {
+        "id": "4",
+        "question": "Quel est votre statut ?",
+        "type": "select",
+        "isRequired": true,
+        "order": 1,
+        "options": [
+          "particulier",
+          "auto-entrepreneur/Freelance",
+          "TPE/PME",
+          "SARL/EURL/SAS/SASU",
+          "grande entreprise",
+          "autre"
+        ],
+        "applicableTo": [
+          "auto-entrepreneur",
+          "particulier",
+          "tpe_pme",
+          "sarl_eurl_sas",
+          "grande_entreprise"
+        ]
+      }
+    ]
+  },
+  {
+    "section": "Secteur d’activité",
+    "sectionOrder": 3,
+    "questions": [
+      {
+        "id": "5",
+        "question": "Quel est votre secteur d’activité ?",
+        "type": "multi-select",
+        "isRequired": true,
+        "order": 1,
+        "options": [
+          "Artisanat",
+          "Commerce & Distribution",
+          "Services aux entreprises & particuliers",
+          "Industrie & Production",
+          "Restauration & Hôtellerie",
+          "Santé & Bien-être",
+          "Immobilier & Construction",
+          "Numérique & Technologies",
+          "Culture, Arts & Loisirs",
+          "Éducation & Formation",
+          "Administratif & Juridique",
+          "Transport & Logistique",
+          "Agriculture & Environnement",
+          "Autre (précisez)"
+        ],
+        "applicableTo": [
+          "auto-entrepreneur",
+          "particulier",
+          "tpe_pme",
+          "sarl_eurl_sas",
+          "grande_entreprise"
+        ]
+      }
+    ]
+  }
+]

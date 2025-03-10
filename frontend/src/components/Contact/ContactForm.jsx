@@ -57,7 +57,7 @@ const ContactForm = () => {
                 placeholder="Votre message..."
                 value={formData[champ]}
                 onChange={handleChange}
-                className="w-full mt-2 p-3 text-secondary dark:text-white ring-1 ring-gray-300 dark:ring-gray-600 rounded-lg h-32 outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700"
+                className="w-full mt-2 p-3 min-h-[50px] max-h-[350px] text-secondary dark:text-white ring-1 ring-gray-300 dark:ring-gray-600 rounded-lg h-32 outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700"
               />
             ) : (
               <input
