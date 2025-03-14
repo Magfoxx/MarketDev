@@ -1,0 +1,99 @@
+{
+  "section": "Contact et Conclusion",
+  "sectionTitle": "Demande de contact et suggestions",
+  "description": "Dernière section du questionnaire, permettant d’obtenir un suivi ou de laisser des remarques.",
+  "sectionOrder": 7,
+  "step": 20,
+  "questions": [
+    {
+      "id": "24",
+      "questionTitle": "Demande de contact",
+      "questionDescription": "Souhaitez-vous être contacté(e) pour un suivi ou un accompagnement ?",
+      "question": "Souhaitez-vous être contacté(e) pour une consultation gratuite ou un devis sur vos besoins digitaux ?",
+      "type": "radio",
+      "isRequired": true,
+      "order": 1,
+      "step": 20,
+      "options": [
+        {
+          "label": "Oui",
+          "value": "oui"
+        },
+        {
+          "label": "Non",
+          "value": "non"
+        }
+      ],
+      "applicableTo": [
+        "auto-entrepreneur",
+        "particulier",
+        "tpe_pme",
+        "sarl_eurl_sas",
+        "grande_entreprise"
+      ],
+      "nextStep": {
+        "oui": 25,
+        "non": 21
+      }
+    },
+    {
+      "id": "25",
+      "questionTitle": "Mode de contact préféré",
+      "questionDescription": "Indiquez le moyen de contact que vous privilégiez pour un suivi ou un devis.",
+      "question": "Quel est votre mode de contact préféré ?",
+      "type": "select",
+      "isRequired": true,
+      "order": 2,
+      "step": 20,
+      "conditions": {
+        "questionId": "24",
+        "equals": [
+          "oui"
+        ]
+      },
+      "options": [
+        {
+          "label": "Email",
+          "value": "email"
+        },
+        {
+          "label": "Téléphone",
+          "value": "telephone"
+        },
+        {
+          "label": "Autre (précisez)",
+          "value": "autre",
+          "requiresTextInput": true
+        }
+      ],
+      "applicableTo": [
+        "auto-entrepreneur",
+        "particulier",
+        "tpe_pme",
+        "sarl_eurl_sas",
+        "grande_entreprise"
+      ],
+      "nextStep": {
+        "default": 21
+      }
+    },
+    {
+      "id": "26",
+      "questionTitle": "Vos remarques et suggestions",
+      "questionDescription": "Exprimez vos commentaires ou suggestions sur ce questionnaire ou vos besoins digitaux.",
+      "question": "Avez-vous des remarques ou suggestions sur ce questionnaire ou sur vos besoins digitaux ?",
+      "type": "text",
+      "isRequired": false,
+      "order": 1,
+      "step": 21,
+      "placeholder": "Votre message ici...",
+      "applicableTo": [
+        "auto-entrepreneur",
+        "particulier",
+        "tpe_pme",
+        "sarl_eurl_sas",
+        "grande_entreprise"
+      ]
+    }
+  ]
+}

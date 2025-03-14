@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const connectDB = async () => {
   try {
@@ -6,11 +9,10 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-
-    console.log("✅ Base de données connectée");
+    console.log("✅ Connecté à MongoDB !");
   } catch (error) {
-    console.error("❌ Erreur de connexion à la base de données :", error.message);
-    process.exit(1); // Arrête le serveur si la connexion échoue
+    console.error("❌ Erreur de connexion MongoDB :", error.message);
+    process.exit(1);
   }
 };
 

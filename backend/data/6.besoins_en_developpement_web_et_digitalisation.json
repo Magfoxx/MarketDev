@@ -1,0 +1,502 @@
+{
+  "section": "Besoins en Développement Web et Digitalisation",
+  "sectionTitle": "Objectifs et fonctionnalités d’un site web",
+  "description": "Identifier vos besoins en matière de digitalisation et d’optimisation web.",
+  "sectionOrder": 6,
+  "step": 15,
+  "questions": [
+    {
+      "id": "19",
+      "questionTitle": "Objectifs principaux d’un site web",
+      "questionDescription": "Définissez les raisons pour lesquelles vous souhaitez créer ou améliorer votre site web.",
+      "question": "Quels sont vos objectifs principaux avec votre site web ? (Plusieurs choix possibles)",
+      "type": "multi-select",
+      "isRequired": true,
+      "order": 1,
+      "step": 15,
+      "conditions": [
+        {
+          "questionId": "14",
+          "equals": [
+            "aucun"
+          ]
+        },
+        {
+          "questionId": "16",
+          "equals": [
+            "non_pas_interesse"
+          ]
+        },
+        {
+          "questionId": "16",
+          "equals": [
+            "non_apprendre"
+          ]
+        }
+      ],
+      "options": [
+        {
+          "label": "Partager du contenu personnel ou un blog (écriture, vidéos, art, lifestyle…)",
+          "value": "blog_personnel",
+          "applicableTo": [
+            "particulier"
+          ]
+        },
+        {
+          "label": "Créer un site personnel (CV, portfolio, projet personnel, espace de présentation…)",
+          "value": "site_personnel",
+          "applicableTo": [
+            "particulier"
+          ]
+        },
+        {
+          "label": "Présenter mon activité et mes services en ligne",
+          "value": "presentation_activite",
+          "applicableTo": [
+            "auto-entrepreneur"
+          ]
+        },
+        {
+          "label": "Attirer plus de clients et générer des prospects (SEO, publicité, réseaux sociaux…)",
+          "value": "generer_prospects",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "tpe_pme"
+          ]
+        },
+        {
+          "label": "Améliorer l’image de marque et la crédibilité de mon entreprise",
+          "value": "ameliorer_image",
+          "applicableTo": [
+            "tpe_pme",
+            "sarl_eurl_sas"
+          ]
+        },
+        {
+          "label": "Créer une communauté engagée autour de mon entreprise / activité",
+          "value": "communaute",
+          "applicableTo": [
+            "tpe_pme",
+            "sarl_eurl_sas"
+          ]
+        },
+        {
+          "label": "Augmenter les ventes et le chiffre d’affaires grâce au digital",
+          "value": "augmenter_ventes",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "tpe_pme",
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        },
+        {
+          "label": "Fidéliser ma clientèle grâce à un blog, une newsletter ou des outils marketing",
+          "value": "fideliser_clientele",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "tpe_pme",
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        },
+        {
+          "label": "Gérer des processus internes de manière plus efficace (CRM, réservation, formulaires avancés…)",
+          "value": "gestion_processus",
+          "applicableTo": [
+            "tpe_pme",
+            "sarl_eurl_sas"
+          ]
+        },
+        {
+          "label": "Développer un outil en ligne spécifique pour mon activité (ERP, application interne, espace client…)",
+          "value": "developpement_outil",
+          "applicableTo": [
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        },
+        {
+          "label": "Vendre des produits/services en ligne",
+          "value": "ecommerce",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "particulier",
+            "tpe_pme",
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        },
+        {
+          "label": "Autre (précisez)",
+          "value": "autre",
+          "requiresTextInput": true,
+          "applicableTo": [
+            "auto-entrepreneur",
+            "particulier",
+            "tpe_pme",
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        }
+      ],
+      "nextStep": {
+        "default": 16
+      }
+    },
+    {
+      "id": "20",
+      "questionTitle": "Fonctionnalités essentielles d’un site web",
+      "questionDescription": "Sélectionnez les fonctionnalités clés que vous souhaitez intégrer à votre site web.",
+      "question": "Quelles fonctionnalités aimeriez-vous intégrer à votre site web ? (3 choix maximum recommandés)",
+      "type": "multi-select",
+      "isRequired": true,
+      "order": 2,
+      "step": 16,
+      "options": [
+        {
+          "label": "Blog ou espace de publication d’articles",
+          "value": "blog_articles",
+          "applicableTo": [
+            "particulier"
+          ]
+        },
+        {
+          "label": "Galerie photo/vidéo",
+          "value": "galerie_photo",
+          "applicableTo": [
+            "particulier"
+          ]
+        },
+        {
+          "label": "Formulaire de contact ou prise de rendez-vous",
+          "value": "formulaire_contact",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "tpe_pme"
+          ]
+        },
+        {
+          "label": "Système de réservation en ligne (RDV clients, coaching, consultations…)",
+          "value": "reservation_en_ligne",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "tpe_pme"
+          ]
+        },
+        {
+          "label": "E-commerce (Boutique en ligne, paiement sécurisé, gestion des stocks…)",
+          "value": "ecommerce",
+          "applicableTo": [
+            "tpe_pme",
+            "sarl_eurl_sas"
+          ]
+        },
+        {
+          "label": "Intégration avec des outils externes (CRM, ERP, outils métiers…)",
+          "value": "integration_outils",
+          "applicableTo": [
+            "tpe_pme",
+            "sarl_eurl_sas"
+          ]
+        },
+        {
+          "label": "Chat en ligne ou chatbot pour interagir avec les visiteurs",
+          "value": "chatbot",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "tpe_pme",
+            "sarl_eurl_sas"
+          ]
+        },
+        {
+          "label": "Espace client/extranet",
+          "value": "espace_client",
+          "applicableTo": [
+            "grande_entreprise"
+          ]
+        },
+        {
+          "label": "Site multilingue",
+          "value": "site_multilingue",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "particulier",
+            "tpe_pme",
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        },
+        {
+          "label": "Autre (précisez)",
+          "value": "autre",
+          "requiresTextInput": true,
+          "applicableTo": [
+            "auto-entrepreneur",
+            "particulier",
+            "tpe_pme",
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        }
+      ],
+      "nextStep": {
+        "default": 17
+      }
+    },
+    {
+      "id": "21",
+      "questionTitle": "Éléments clés d’un site performant",
+      "questionDescription": "Identifiez les éléments qui comptent le plus pour vous dans un site web professionnel.",
+      "question": "Quels éléments vous semblent les plus importants pour un site web efficace ? (3 choix recommandés)",
+      "type": "multi-select",
+      "isRequired": true,
+      "order": 3,
+      "step": 17,
+      "options": [
+        {
+          "label": "Design moderne et attractif",
+          "value": "design_moderne",
+          "applicableTo": [
+            "particulier"
+          ]
+        },
+        {
+          "label": "Facilité d’utilisation et de gestion",
+          "value": "facilite_utilisation",
+          "applicableTo": [
+            "particulier",
+            "auto-entrepreneur"
+          ]
+        },
+        {
+          "label": "Compatibilité mobile et tablette",
+          "value": "compatibilite_mobile",
+          "applicableTo": [
+            "particulier",
+            "auto-entrepreneur"
+          ]
+        },
+        {
+          "label": "Bonne visibilité sur Google (SEO)",
+          "value": "seo",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "tpe_pme"
+          ]
+        },
+        {
+          "label": "Rapidité et performance du site",
+          "value": "performance",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "tpe_pme"
+          ]
+        },
+        {
+          "label": "Sécurité et protection des données",
+          "value": "securite",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "tpe_pme",
+            "sarl_eurl_sas"
+          ]
+        },
+        {
+          "label": "Intégration avec d’autres outils (CRM, ERP…)",
+          "value": "integration_outils",
+          "applicableTo": [
+            "tpe_pme",
+            "sarl_eurl_sas"
+          ]
+        },
+        {
+          "label": "Capacité de personnalisation avancée",
+          "value": "personnalisation",
+          "applicableTo": [
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        },
+        {
+          "label": "Gestion multi-utilisateurs et rôles avancés",
+          "value": "multi_utilisateurs",
+          "applicableTo": [
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        },
+        {
+          "label": "Autre (précisez)",
+          "value": "autre",
+          "requiresTextInput": true,
+          "applicableTo": [
+            "auto-entrepreneur",
+            "particulier",
+            "tpe_pme",
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        }
+      ],
+      "nextStep": {
+        "default": 18
+      }
+    },
+    {
+      "id": "22",
+      "questionTitle": "Budget prévu pour un site web",
+      "questionDescription": "Définissez votre budget pour la création ou l’amélioration de votre site web.",
+      "question": "Quel budget seriez-vous prêt(e) à investir dans la création ou l’optimisation d’un site web ?",
+      "type": "select",
+      "isRequired": true,
+      "order": 4,
+      "step": 18,
+      "options": [
+        {
+          "label": "Moins de 500€",
+          "value": "moins_500"
+        },
+        {
+          "label": "Entre 500€ et 1000€",
+          "value": "500_1000"
+        },
+        {
+          "label": "Entre 1000€ et 3000€",
+          "value": "1000_3000"
+        },
+        {
+          "label": "Entre 3000€ et 5000€",
+          "value": "3000_5000"
+        },
+        {
+          "label": "Entre 5000€ et 10 000€",
+          "value": "5000_10000"
+        },
+        {
+          "label": "Plus de 10 000€",
+          "value": "plus_10000"
+        },
+        {
+          "label": "Je ne sais pas encore",
+          "value": "indecis"
+        }
+      ],
+      "applicableTo": [
+        "auto-entrepreneur",
+        "particulier",
+        "tpe_pme",
+        "sarl_eurl_sas",
+        "grande_entreprise"
+      ],
+      "nextStep": {
+        "default": 19
+      }
+    },
+    {
+      "id": "23",
+      "questionTitle": "Accompagnement et ressources",
+      "questionDescription": "Définissez les types d’accompagnement qui vous seraient utiles pour la création et la gestion de votre site web.",
+      "question": "Quels types d’accompagnement vous seraient utiles pour votre site web ?",
+      "type": "multi-select",
+      "isRequired": true,
+      "order": 5,
+      "step": 19,
+      "applicableTo": [
+        "auto-entrepreneur",
+        "particulier",
+        "tpe_pme",
+        "sarl_eurl_sas",
+        "grande_entreprise"
+      ],
+      "options": [
+        {
+          "label": "Créer un site web de base (Blog, portfolio, site personnel)",
+          "value": "site_web_base",
+          "applicableTo": [
+            "particulier"
+          ]
+        },
+        {
+          "label": "Acheter un nom de domaine et un hébergement (Réservation du nom de domaine, choix d’un hébergeur)",
+          "value": "nom_domaine_hebergement",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "particulier"
+          ]
+        },
+        {
+          "label": "Concevoir et designer votre site (Webdesign, identité visuelle, charte graphique)",
+          "value": "conception_design",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "tpe_pme"
+          ]
+        },
+        {
+          "label": "Optimiser le référencement naturel (SEO) (Stratégie SEO, mots-clés, backlinks, amélioration de la visibilité Google)",
+          "value": "optimisation_seo",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "tpe_pme"
+          ]
+        },
+        {
+          "label": "Installer un blog ou un système de réservation en ligne (Prise de rendez-vous, réservation de services)",
+          "value": "blog_reservation",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "tpe_pme"
+          ]
+        },
+        {
+          "label": "Intégrer des outils externes (CRM, ERP, outils de gestion, API, solutions marketing)",
+          "value": "integration_outils",
+          "applicableTo": [
+            "tpe_pme",
+            "sarl_eurl_sas"
+          ]
+        },
+        {
+          "label": "Automatiser certaines tâches (Email marketing, gestion des stocks, processus internes, workflows automatisés)",
+          "value": "automatisation_taches",
+          "applicableTo": [
+            "tpe_pme",
+            "sarl_eurl_sas"
+          ]
+        },
+        {
+          "label": "Développer un site sur-mesure (Plateforme interne, espace client, Extranet, solutions spécifiques à votre activité)",
+          "value": "developpement_sur_mesure",
+          "applicableTo": [
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        },
+        {
+          "label": "Gérer et maintenir le site (Mises à jour, sauvegardes, sécurité, corrections techniques)",
+          "value": "gestion_maintenance",
+          "applicableTo": [
+            "tpe_pme",
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        },
+        {
+          "label": "Gérer le site en toute autonomie (Je préfère m’occuper moi-même de mon site et de sa maintenance)",
+          "value": "autonomie_site",
+          "applicableTo": [
+            "auto-entrepreneur",
+            "particulier",
+            "tpe_pme",
+            "sarl_eurl_sas",
+            "grande_entreprise"
+          ]
+        }
+      ],
+      "nextStep": {
+        "default": 20
+      }
+    }
+  ]
+}
