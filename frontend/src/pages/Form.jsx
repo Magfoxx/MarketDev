@@ -1,11 +1,10 @@
-// import Questionnaire from "../components/Questionnaire";
+import Questionnaire from "../components/Questionnaire/Questionnaire";
 
 const Form = () => {
   return (
-    <div className="max-padd-container section !flex-column">
+    <div className="max-padd-container section !flex-col">
       {/* Affichage du questionnaire */}
-      {/* <Questionnaire /> */}
-      <h2 className="text-secondary dark:text-white font-bold h2">Formulaire en cours de création</h2>
+      <Questionnaire />
     </div>
   );
 };

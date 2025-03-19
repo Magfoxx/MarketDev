@@ -1,28 +1,40 @@
 import mongoose from "mongoose";
 
-const QuestionSchema = new mongoose.Schema({
-  section: { type: String, required: true },
-  sectionTitle: { type: String, required: true },
-  description: { type: String, required: true },
-  sectionOrder: { type: Number, required: true },
-  step: { type: Number, required: true },
-  order: { type: Number, required: true },
-  questionTitle: { type: String, required: true },
-  questionDescription: { type: String, required: true },
-  question: { type: String, required: true },
-  type: {
-    type: String,
-    required: true,
-    enum: ["text", "radio", "checkbox", "textarea", "select", "boolean", "email", "multi-select"]
+// Schéma pour chaque option d'une question
+const OptionSchema = new mongoose.Schema(
+  {
+    label: { type: String, required: true },
+    value: { type: String, required: true },
+    colors: { type: [String], default: [] },
+    description: { type: String }, // Optionnel : toutes les options n'ont pas de description.
+    requiresTextInput: { type: Boolean, default: false },
+    nextStep: { type: mongoose.Schema.Types.Mixed } // Peut être un objet complexe.
   },
-  options: { type: Array, default: [] },
-  hasOtherOption: { type: Boolean, default: false },
-  otherPlaceholder: { type: String, default: "" },
-  isRequired: { type: Boolean, default: false },
-  parentQuestion: { type: mongoose.Schema.Types.ObjectId, ref: "Question", default: null },
-  visibleIf: { type: Object, default: null },
-  applicableTo: { type: [String], required: true },
-  createdAt: { type: Date, default: Date.now }
+  { _id: false }
+);
+
+// Schéma pour chaque question
+const SubQuestionSchema = new mongoose.Schema(
+  {
+    id: { type: String, required: true },
+    text: { type: String, required: true },
+    type: { type: String, required: true },
+    isRequired: { type: Boolean, required: true },
+    placeholder: { type: String }, // Présent uniquement pour certaines questions.
+    unique: { type: Boolean },
+    options: { type: [OptionSchema], default: [] }, // Vide si la question n'a pas d'options.
+    nextStep: { type: mongoose.Schema.Types.Mixed }, // Pour les questions avec des sauts conditionnels.
+    conditions: { type: [mongoose.Schema.Types.Mixed], default: [] }
+  },
+  { _id: false }
+);
+
+// Schéma pour une section de questions
+const QuestionSectionSchema = new mongoose.Schema({
+  sectionId: { type: Number, required: true },
+  sectionTitle: { type: String, required: true },
+  sectionDescription: { type: String, required: true },
+  questions: { type: [SubQuestionSchema], required: true }
 });
 
-export default mongoose.model("Question", QuestionSchema);
+export default mongoose.model("QuestionSection", QuestionSectionSchema);

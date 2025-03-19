@@ -92,7 +92,11 @@ p {
 
 /* Boutons */
 .btn-primary {
-  @apply bg-primary text-white rounded-full font-semibold px-6 py-3 mt-4 hover:bg-white dark:hover:bg-secondary hover:text-secondary dark:hover:text-white hover:ring dark:hover:ring-white focus:ring-2 focus:ring-slate-900 transition-all duration-300 ease-in-out cursor-pointer;
+  @apply bg-[var(--color-primary)] text-white rounded-full font-semibold px-6 py-3 mt-4 hover:bg-white hover:text-[var(--color-secondary)] dark:hover:ring-white focus:ring-2 focus:ring-slate-900 transition-all duration-300 ease-in-out cursor-pointer;
+}
+
+.btn-secondary {
+  @apply bg-gray-300 text-[var(--color-secondary)] hover:text-white rounded-full font-semibold px-6 py-3 mt-4 hover:bg-[var(--color-gray-40)] dark:bg-[var(--color-gray-50)] dark:text-[var(--color-secondary)] dark:hover:bg-[var(--color-gray-40)] dark:hover:ring dark:hover:ring-[var(--color-secondary)] focus:ring-2 focus:ring-[var(--color-secondary)] transition-all duration-300 ease-in-out cursor-pointer;
 }
 
 /* Layout */
