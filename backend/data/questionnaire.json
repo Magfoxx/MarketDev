@@ -76,7 +76,7 @@
       {
         "id": "5",
         "text": "Quel est votre secteur d’activité ? (Sélectionnez ou entrez une réponse libre)",
-        "type": "multi-select",
+        "type": "select",
         "isRequired": true,
         "colors": ["red", "green", "blue", "orange", "yellow"],
         "options": [

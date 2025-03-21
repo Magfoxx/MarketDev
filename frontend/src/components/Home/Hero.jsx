@@ -15,7 +15,7 @@ const Hero = () => {
 
       {/* Texte d'explication */}
       <div className="max-w-3xl text-gray-600 dark:text-gray-300 leading-relaxed space-y-8 text-justify">
-        <p>
+        <p className="p">
           Bienvenue sur{" "}
           <span className="font-bold text-secondary dark:text-white">
             Market<span className="text-primary">Dev</span>
@@ -29,7 +29,7 @@ const Hero = () => {
           adaptées à vos attentes.
         </p>
 
-        <p>
+        <p className="p">
           En répondant à ce questionnaire, vous contribuez à une{" "}
           <span className="font-bold">étude de marché</span> qui me permettra de
           mieux comprendre vos besoins en matière de développement web :
@@ -58,7 +58,7 @@ const Hero = () => {
 
       {/* Infos supplémentaires */}
       <div className="text-center max-w-3xl">
-        <p className="text-gray-500 dark:text-gray-400 font-medium">
+        <p className="p text-gray-500 dark:text-gray-400 font-medium">
           🕒 Temps estimé : <span className="font-bold">3 à 5 minutes</span> •
           Vos réponses sont{" "}
           <span className="text-red-500 dark:text-red-400">

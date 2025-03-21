@@ -37,4 +37,4 @@ const QuestionSectionSchema = new mongoose.Schema({
   questions: { type: [SubQuestionSchema], required: true }
 });
 
-export default mongoose.model("QuestionSection", QuestionSectionSchema);
+export default mongoose.model("Questions", QuestionSectionSchema);

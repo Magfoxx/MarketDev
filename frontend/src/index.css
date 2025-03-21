@@ -87,7 +87,7 @@ main {
 }
 
 p {
-  @apply leading-[1.3] text-[16px];
+  @apply leading-[1.3] text-[16px] text-gray-500 dark:text-gray-300;
 }
 
 /* Boutons */
@@ -116,6 +116,49 @@ p {
 /* Conteneur principal */
 .max-padd-container {
   @apply mx-auto max-w-[1440px] px-6 lg:px-12;
+}
+
+/* LoaderSpinner*/
+.loader {
+  @apply flex justify-items-center justify-center m-auto overflow-hidden text-center relative px-12 text-[48px] leading-[86px] font-sans text-secondary dark:text-white w-85;
+}
+
+/* Styles pour les pseudo-éléments ::before et ::after */
+.loader::before,
+.loader::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 15px;
+  background: oklch(69.59% 0.1491 162.48);
+  position: absolute;
+  animation: load 0.9s infinite alternate ease-in-out;
+  top: 0;
+}
+
+/* Positionnement spécifique pour ::after */
+.loader::after {
+  top: auto;
+  bottom: 0;
+}
+
+@keyframes load {
+  0% {
+    left: 0;
+    height: 50px;
+    width: 5px;
+    transform: translateX(0);
+  }
+  50% {
+    height: 5px;
+    width: 20px;
+  }
+  100% {
+    left: 100%;
+    height: 50px;
+    width: 5px;
+    transform: translateX(-100%);
+  }
 }
 
 /*********** Footer ***********/
