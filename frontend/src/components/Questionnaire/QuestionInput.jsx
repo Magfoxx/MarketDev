@@ -3,6 +3,8 @@ import React from "react";
 const QuestionInput = ({
   question,
   valeur,
+  valeurComplementaire, // Nouvelle prop pour la réponse complémentaire
+  erreur, // Prop pour le message d'erreur
   onChangement,
   onChangementCheckbox,
 }) => {
@@ -16,13 +18,16 @@ const QuestionInput = ({
     case "text":
     case "email":
       return (
-        <input
-          type={question.type}
-          placeholder={question.placeholder || ""}
-          value={valeur || ""}
-          onChange={(e) => onChangement(question.id, e.target.value)}
-          className={classesInput}
-        />
+        <>
+          <input
+            type={question.type}
+            placeholder={question.placeholder || ""}
+            value={valeur || ""}
+            onChange={(e) => onChangement(question.id, e.target.value)}
+            className={classesInput}
+          />
+          {erreur && <span className="text-red-500 text-sm">{erreur}</span>}
+        </>
       );
     case "radio":
       return (
@@ -42,25 +47,23 @@ const QuestionInput = ({
               {option.requiresTextInput && valeur === "autre" && (
                 <textarea
                   placeholder="Précisez..."
-                  value={
-                    typeof valeur === "object"
-                      ? valeur[`${question.id}autre`] || ""
-                      : ""
-                  }
+                  value={valeurComplementaire || ""}
                   onChange={(e) =>
-                    onChangement(`${question.id}autre`, e.target.value)
+                    onChangement(`${question.id}_other`, e.target.value)
                   }
                   className={classesTextarea}
                 />
               )}
             </div>
           ))}
+          {erreur && <span className="text-red-500 text-sm">{erreur}</span>}
         </div>
       );
     case "select":
       return (
         <div>
           <select
+            name={`question-${question.id}`}
             value={valeur || ""}
             onChange={(e) => onChangement(question.id, e.target.value)}
             className={`${classesInput} text-lg`}
@@ -74,16 +77,13 @@ const QuestionInput = ({
               </option>
             ))}
           </select>
+          {erreur && <span className="text-red-500 text-sm">{erreur}</span>}
           {valeur === "autre" && (
             <textarea
               placeholder="Précisez..."
-              value={
-                typeof valeur === "object"
-                  ? valeur[`${question.id}autre`] || ""
-                  : ""
-              }
+              value={valeurComplementaire || ""}
               onChange={(e) =>
-                onChangement(`${question.id}autre`, e.target.value)
+                onChangement(`${question.id}_other`, e.target.value)
               }
               className={classesTextarea}
             />
@@ -91,37 +91,40 @@ const QuestionInput = ({
         </div>
       );
     case "multi-select":
-      return question.options.map((option) => (
-        <div key={option.value}>
-          <label className="flex items-center gap-2 text-secondary dark:text-white mt-4">
-            <input
-              type="checkbox"
-              name={`question-${question.id}`}
-              value={option.value}
-              checked={Array.isArray(valeur) && valeur.includes(option.value)}
-              onChange={() => onChangementCheckbox(question.id, option.value)}
-              className="max-w-5 max-h-5 accent-primary mt-1 cursor-pointer"
+      return (
+        <div>
+          {question.options.map((option) => (
+            <div key={option.value}>
+              <label className="flex items-center gap-2 text-secondary dark:text-white mt-4">
+                <input
+                  type="checkbox"
+                  name={`question-${question.id}`}
+                  value={option.value}
+                  checked={
+                    Array.isArray(valeur) && valeur.includes(option.value)
+                  }
+                  onChange={() =>
+                    onChangementCheckbox(question.id, option.value)
+                  }
+                  className="max-w-5 max-h-5 accent-primary mt-1 cursor-pointer"
+                />
+                <span className="leading-tight">{option.label}</span>
+              </label>
+            </div>
+          ))}
+          {erreur && <span className="text-red-500 text-sm">{erreur}</span>}
+          {Array.isArray(valeur) && valeur.includes("autre") && (
+            <textarea
+              placeholder="Précisez..."
+              value={valeurComplementaire || ""}
+              onChange={(e) =>
+                onChangement(`${question.id}_other`, e.target.value)
+              }
+              className={classesTextarea}
             />
-            <span className="leading-tight">{option.label}</span>
-          </label>
-          {option.requiresTextInput &&
-            Array.isArray(valeur) &&
-            valeur.includes("autre") && (
-              <textarea
-                placeholder="Précisez..."
-                value={
-                  typeof valeur === "object"
-                    ? valeur[`${question.id}autre`] || ""
-                    : ""
-                }
-                onChange={(e) =>
-                  onChangement(`${question.id}autre`, e.target.value)
-                }
-                className={classesTextarea}
-              />
-            )}
+          )}
         </div>
-      ));
+      );
     default:
       return null;
   }
