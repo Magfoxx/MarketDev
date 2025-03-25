@@ -42,27 +42,37 @@
           {
             "label": "Particulier",
             "value": "particulier",
-            "colors": ["red"]
+            "colors": [
+              "red"
+            ]
           },
           {
             "label": "Auto-entrepreneur",
             "value": "auto_entrepreneur",
-            "colors": ["green"]
+            "colors": [
+              "green"
+            ]
           },
           {
             "label": "TPE / PME",
             "value": "tpe_pme",
-            "colors": ["blue"]
+            "colors": [
+              "blue"
+            ]
           },
           {
             "label": "EURL, SARL, SAS, SASU",
             "value": "sarl_eurl_sas_sasu",
-            "colors": ["orange"]
+            "colors": [
+              "orange"
+            ]
           },
           {
             "label": "Grande entreprise",
             "value": "grande_entreprise",
-            "colors": ["yellow"]
+            "colors": [
+              "yellow"
+            ]
           }
         ]
       }
@@ -78,7 +88,13 @@
         "text": "Quel est votre secteur d’activité ? (Sélectionnez ou entrez une réponse libre)",
         "type": "select",
         "isRequired": true,
-        "colors": ["red", "green", "blue", "orange", "yellow"],
+        "colors": [
+          "red",
+          "green",
+          "blue",
+          "orange",
+          "yellow"
+        ],
         "options": [
           {
             "label": "Artisanat (Bâtiment, Menuiserie, Métallerie, Ébénisterie, etc.)",
@@ -194,55 +210,96 @@
           {
             "label": "Site personnel (Portfolio, CV, blog, contenu personnel).",
             "value": "site_personnel",
-            "colors": ["red"],
+            "colors": [
+              "red"
+            ],
             "description": "Usage individuel, dédié aux particuliers (ex. blog personnel)."
           },
           {
             "label": "Site vitrine (Présentation des services et contact)",
             "value": "site_vitrine",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Un site simple présentant l’activité et proposant un moyen de contact."
           },
           {
             "label": "Site e-commerce (Vente de produits ou services en ligne)",
             "value": "site_ecommerce",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Permet la vente directe de produits ou services avec un panier et un paiement en ligne."
           },
           {
             "label": "Blog professionnel (Articles, SEO, visibilité)",
             "value": "blog_professionnel",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Production de contenu éditorial pour améliorer la visibilité et le référencement."
           },
           {
             "label": "Plateforme ou application web interne (ERP, outil métier, Intranet)",
             "value": "plateforme_interne",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Outil destiné à un usage interne (gestion de projets, RH, comptabilité, etc.)."
           },
           {
             "label": "Application web ou mobile (Développement spécifique)",
             "value": "application_web_mobile",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Un service ou une application sur mesure (ex. SaaS, app mobile)."
           },
           {
             "label": "Site corporate avec espace client / Extranet",
             "value": "site_corporate",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Site institutionnel intégrant un espace sécurisé réservé aux clients/partenaires."
           },
           {
             "label": "Portail multi-services (Gestion RH, service client, réservations…)",
             "value": "portail_multi_services",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Plateforme offrant plusieurs fonctionnalités (réservations, support, facturation, etc.)."
           },
           {
             "label": "Autre (précisez)",
             "value": "autre",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Champ libre pour un type de site différent.",
             "requiresTextInput": true
           }
@@ -270,29 +327,27 @@
         "options": [
           {
             "label": "Oui, il répond à mes attentes",
-            "value": "oui",
-            "nextStep": {
-              "sectionId": 9,
-              "questionId": 12
-            }
+            "value": "oui"
           },
           {
             "label": "Partiellement, j’aimerais l’améliorer",
-            "value": "partiellement",
-            "nextStep": {
-              "sectionId": 9,
-              "questionId": 12
-            }
+            "value": "partiellement"
           },
           {
             "label": "Non, il ne me sert pas autant que je l’espérais",
-            "value": "non",
-            "nextStep": {
-              "sectionId": 8,
-              "questionId": 11
-            }
+            "value": "non"
           }
-        ]
+        ],
+        "nextStep": {
+          "default": {
+            "sectionId": 9,
+            "questionId": 12
+          },
+          "non": {
+            "sectionId": 8,
+            "questionId": 11
+          }
+        }
       }
     ]
   },
@@ -310,37 +365,67 @@
           {
             "label": "Manque de budget",
             "value": "manque_budget",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Les ressources financières nécessaires sont trop importantes."
           },
           {
             "label": "Manque de temps pour s’en occuper",
             "value": "manque_temps",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "L’équipe n’a pas la disponibilité pour gérer la création ou la maintenance d’un site."
           },
           {
             "label": "Manque de compétences techniques",
             "value": "manque_competences",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Personne en interne ne sait comment concevoir ou maintenir un site internet."
           },
           {
             "label": "Nous utilisons uniquement les réseaux sociaux",
             "value": "reseaux_sociaux_uniquement",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "La présence sur Facebook, Instagram, LinkedIn… est jugée suffisante."
           },
           {
             "label": "Nous disposons déjà d’une plateforme interne",
             "value": "plateforme_interne_suffit",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Un intranet ou un ERP interne répond déjà aux besoins, pas de site public requis."
           },
           {
             "label": "Autre (précisez)",
             "value": "autre",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Champ libre pour une autre raison d’absence de site.",
             "requiresTextInput": true
           }
@@ -362,32 +447,68 @@
           {
             "label": "Oui, j’aimerais avoir un blog ou un site perso",
             "value": "oui_blog_site_perso",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Oui, nous avons un projet en cours",
             "value": "oui_projet_en_cours",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Oui, mais nous ne savons pas par où commencer",
             "value": "oui_sais_pas",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Oui, nous envisageons une transformation digitale complète",
             "value": "oui_transformation_digitale",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Non, ce n’est pas une priorité actuellement",
             "value": "non_pas_priorite",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Autre (précisez)",
             "value": "autre",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "requiresTextInput": true
           }
         ]
@@ -408,42 +529,90 @@
           {
             "label": "Facebook (Communication, publicité)",
             "value": "facebook",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Instagram (Visuel, contenu visuel)",
             "value": "instagram",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "LinkedIn (Networking, recrutement, B2B)",
             "value": "linkedin",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "TikTok (Contenu vidéo créatif et viral)",
             "value": "tiktok",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Twitter / X (Information, veille, communication rapide)",
             "value": "twitter",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Pinterest (Idées, inspiration visuelle)",
             "value": "pinterest",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Réseaux sociaux internes (Yammer, Workplace, Slack...)",
             "value": "reseaux_internes",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Je n’utilise pas de réseaux sociaux",
             "value": "aucun",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           }
         ],
         "nextStep": {
@@ -470,7 +639,7 @@
   {
     "sectionId": 10,
     "sectionTitle": "Publicité et marketing digital",
-    "sectionDescription": "Évaluez si vous utilisez la publicité en ligne et des outils numériques avancés. (Tous statuts sauf Particuliers)",
+    "sectionDescription": "Évaluez si vous utilisez la publicité en ligne et des outils numériques avancés.",
     "questions": [
       {
         "id": "13",
@@ -481,22 +650,42 @@
           {
             "label": "Non, jamais",
             "value": "jamais",
-            "colors": ["green", "blue", "orange", "yellow"]
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Oui, occasionnellement",
             "value": "occasionnellement",
-            "colors": ["green", "blue", "orange", "yellow"]
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Oui, régulièrement",
             "value": "regulierement",
-            "colors": ["green", "blue", "orange", "yellow"]
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Oui, nous avons un budget dédié et une équipe marketing",
             "value": "budget_marketing",
-            "colors": ["green", "blue", "orange", "yellow"]
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           }
         ]
       },
@@ -509,47 +698,102 @@
           {
             "label": "Réseaux sociaux (Facebook, Instagram, LinkedIn, TikTok…)",
             "value": "reseaux_sociaux",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Publicité en ligne (Google Ads, Facebook Ads, LinkedIn Ads, TikTok Ads, Programmatique…)",
             "value": "publicite",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "SEO (Référencement naturel, stratégie de backlinks, etc.)",
             "value": "seo",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Newsletter & Email marketing (Mailchimp, HubSpot, Sendinblue…)",
             "value": "email_marketing",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "CRM et automatisation des campagnes (HubSpot, Salesforce, Zoho CRM…)",
             "value": "crm",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Marketing automation avancé (Marketo, Pardot, ActiveCampaign…)",
             "value": "marketing_automation",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Data Marketing & Big Data (Google Data Studio, Power BI, BigQuery…)",
             "value": "big_data",
-            "colors": ["red", "green", "blue", "orange", "yellow"]
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           },
           {
             "label": "Aucun outil actuellement",
             "value": "aucun",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
-            "nextStep": {
-              "sectionId": 14
-            }
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ]
           }
-        ]
+        ],
+        "nextStep": {
+          "aucun": {
+            "sectionId": 14,
+            "questionId": 19
+          },
+          "default": {
+            "sectionId": 11,
+            "questionId": 15
+          }
+        }
       }
     ]
   },
@@ -567,73 +811,125 @@
           {
             "label": "Partager du contenu personnel ou un blog (écriture, art, vidéos, passions…)",
             "value": "blog_personnel",
-            "colors": ["red"],
+            "colors": [
+              "red"
+            ],
             "description": "Pour les particuliers souhaitant partager leur univers personnel."
           },
           {
             "label": "Créer un site personnel (CV, portfolio, projet personnel…)",
             "value": "site_personnel",
-            "colors": ["red"],
+            "colors": [
+              "red"
+            ],
             "description": "Pour les particuliers qui veulent présenter leur profil et leurs projets."
           },
           {
             "label": "Développer ma présence sur les réseaux sociaux",
             "value": "presence_reseaux",
-            "colors": ["red", "green", "blue"],
+            "colors": [
+              "red",
+              "green",
+              "blue"
+            ],
             "description": "Pour renforcer la visibilité personnelle ou professionnelle via les réseaux sociaux."
           },
           {
             "label": "Faire connaître mon activité / Augmenter ma visibilité en ligne",
             "value": "augmenter_visibilite",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Pour promouvoir votre activité et atteindre de nouveaux clients."
           },
           {
             "label": "Générer des prospects et attirer plus de clients",
             "value": "generer_prospects",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Pour stimuler l’acquisition de nouveaux clients et accroître le chiffre d’affaires."
           },
           {
             "label": "Améliorer l’image de marque et la communication",
             "value": "ameliorer_image",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Pour renforcer la notoriété et la crédibilité de votre entreprise."
           },
           {
             "label": "Développer un réseau professionnel (LinkedIn, collaborations, partenariats…)",
             "value": "reseau_pro",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Pour étendre votre réseau professionnel et créer des partenariats stratégiques."
           },
           {
             "label": "Augmenter les ventes et le chiffre d’affaires grâce au digital",
             "value": "augmenter_ventes",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Pour booster vos ventes via des stratégies digitales ciblées."
           },
           {
             "label": "Fidéliser ma clientèle avec des outils marketing (CRM, email automation, promotions…)",
             "value": "fideliser_clientele",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Pour renforcer la relation client et encourager les achats répétés."
           },
           {
             "label": "Automatiser certains processus internes et améliorer l’efficacité marketing",
             "value": "automatisation",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Pour optimiser vos processus internes et maximiser l’efficacité de vos campagnes."
           },
           {
             "label": "Analyser les performances digitales pour optimiser la stratégie",
             "value": "analyse_performances",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Pour suivre et améliorer continuellement vos actions digitales."
           },
           {
             "label": "Autre (précisez)",
             "value": "autre",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Si aucun des objectifs ci-dessus ne correspond, précisez votre objectif.",
             "requiresTextInput": true
           }
@@ -655,50 +951,81 @@
           {
             "label": "Oui, via les statistiques des réseaux sociaux (Facebook Insights, Instagram Analytics, YouTube Studio...)",
             "value": "oui_statistiques_reseaux",
-            "colors": ["red", "green"],
+            "colors": [
+              "red",
+              "green"
+            ],
             "description": "Particulier ou Auto-entrepreneur qui suit ses performances via les plateformes sociales."
           },
           {
             "label": "Non, mais j'aimerais apprendre comment suivre mes performances",
             "value": "non_apprendre",
-            "colors": ["red", "green", "blue"],
+            "colors": [
+              "red",
+              "green",
+              "blue"
+            ],
             "description": "Statuts souhaitant s’initier à l’analyse de performances en ligne."
           },
           {
             "label": "Oui, j'utilise des outils simples comme Google Analytics ou Search Console",
             "value": "oui_outils_simples",
-            "colors": ["green", "blue"],
+            "colors": [
+              "green",
+              "blue"
+            ],
             "description": "Entreprises ayant déjà mis en place des outils basiques d’analyse."
           },
           {
             "label": "Oui, nous utilisons plusieurs outils d'analyse pour optimiser nos actions",
             "value": "oui_plusieurs_outils",
-            "colors": ["blue", "orange"],
+            "colors": [
+              "blue",
+              "orange"
+            ],
             "description": "TPE/PME plus avancées ou EURL/SARL/SAS disposant de multiples solutions d’analyse."
           },
           {
             "label": "Oui, nous avons un tableau de bord automatisé et des KPIs définis",
             "value": "oui_tableau_kpi",
-            "colors": ["orange", "yellow"],
+            "colors": [
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises plus structurées avec reporting automatisé."
           },
           {
             "label": "Oui, nous avons une équipe dédiée pour l'analyse et le reporting",
             "value": "oui_equipe_dediee",
-            "colors": ["orange", "yellow"],
+            "colors": [
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises disposant d’une équipe spécialisée."
           },
           {
             "label": "Non, je ne m’y intéresse pas",
             "value": "non_pas_interesse",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
-            "description": "Aucun intérêt porté au suivi des performances en ligne.",
-            "nextStep": {
-              "sectionId": 14,
-              "questionId": 19
-            }
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
+            "description": "Aucun intérêt porté au suivi des performances en ligne."
           }
-        ]
+        ],
+        "nextStep": {
+          "non_pas_interesse": {
+            "sectionId": 14,
+            "questionId": 19
+          },
+          "default": {
+            "sectionId": 13,
+            "questionId": 17
+          }
+        }
       }
     ]
   },
@@ -716,61 +1043,101 @@
           {
             "label": "Statistiques des réseaux sociaux (Facebook Insights, Instagram Analytics, YouTube Studio…)",
             "value": "statistiques_reseaux",
-            "colors": ["red", "green"],
+            "colors": [
+              "red",
+              "green"
+            ],
             "description": "Particulier ou Auto-entrepreneur utilisant les données natives des plateformes sociales."
           },
           {
             "label": "Google Analytics (Suivi du trafic, conversions, comportement des visiteurs)",
             "value": "google_analytics",
-            "colors": ["red", "green", "blue"],
+            "colors": [
+              "red",
+              "green",
+              "blue"
+            ],
             "description": "Particulier (blog perso), Auto-entrepreneur, ou TPE/PME souhaitant des insights détaillés."
           },
           {
             "label": "Google Search Console (Visibilité SEO, performances de recherche)",
             "value": "google_search_console",
-            "colors": ["green", "blue"],
+            "colors": [
+              "green",
+              "blue"
+            ],
             "description": "Auto-entrepreneur, TPE/PME souhaitant optimiser leur référencement Google."
           },
           {
             "label": "Pixel Facebook / Conversion API (Tracking publicités et conversions Meta)",
             "value": "pixel_facebook",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises utilisant Facebook Ads ou Instagram Ads pour mesurer les conversions."
           },
           {
             "label": "Outil d’A/B testing (Google Optimize, VWO, AB Tasty…)",
             "value": "ab_testing",
-            "colors": ["blue", "orange"],
+            "colors": [
+              "blue",
+              "orange"
+            ],
             "description": "Entreprises souhaitant optimiser leurs pages et parcours utilisateurs."
           },
           {
             "label": "Tableaux de bord automatisés (Google Data Studio, Power BI, Looker Studio…)",
             "value": "tableaux_de_bord",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "TPE/PME ou plus grandes structures pour consolider et visualiser les données."
           },
           {
             "label": "CRM et gestion des prospects (HubSpot, Salesforce, Zoho CRM, Pipedrive…)",
             "value": "crm",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises pour gérer la relation client."
           },
           {
             "label": "Automatisation marketing (Emailing automatisé, chatbots, retargeting…)",
             "value": "marketing_automation",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises cherchant à automatiser leurs campagnes."
           },
           {
             "label": "Outils d’analyse avancée (SEMrush, Ahrefs, Hotjar, Crazy Egg, SimilarWeb…)",
             "value": "analyse_avancee",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises investissant dans l’optimisation SEO, l’analyse UX, ou l’étude concurrentielle."
           },
           {
             "label": "Aucun outil actuellement",
             "value": "aucun_outil",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Aucun suivi spécifique mis en place pour l’instant."
           }
         ]
@@ -784,55 +1151,90 @@
           {
             "label": "Création et optimisation de contenu sur les réseaux sociaux",
             "value": "creation_contenu_reseaux",
-            "colors": ["red", "green"],
+            "colors": [
+              "red",
+              "green"
+            ],
             "description": "Particulier ou Auto-entrepreneur cherchant à mieux exploiter les réseaux sociaux."
           },
           {
             "label": "Augmenter l’engagement et la visibilité de mon blog ou site perso",
             "value": "augmenter_visibilite_blog",
-            "colors": ["red"],
+            "colors": [
+              "red"
+            ],
             "description": "Particulier souhaitant plus de trafic ou d’interaction sur son blog/site personnel."
           },
           {
             "label": "Amélioration de l’expérience utilisateur (UX) et du design du site",
             "value": "amelioration_ux_design",
-            "colors": ["green", "blue"],
+            "colors": [
+              "green",
+              "blue"
+            ],
             "description": "Entreprises voulant un site plus ergonomique et attrayant."
           },
           {
             "label": "Optimisation du référencement naturel (SEO) pour mieux apparaître sur Google",
             "value": "optimisation_seo",
-            "colors": ["green", "blue"],
+            "colors": [
+              "green",
+              "blue"
+            ],
             "description": "Auto-entrepreneur, TPE/PME qui souhaitent booster leur visibilité organique."
           },
           {
             "label": "Stratégie de contenu (planification des posts, articles, newsletters...)",
             "value": "strategie_contenu",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises de toutes tailles cherchant à publier du contenu de façon cohérente."
           },
           {
             "label": "Conversion et génération de leads (landing pages, call-to-action efficaces)",
             "value": "generation_leads",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Pour transformer le trafic en prospects ou en clients."
           },
           {
             "label": "Automatisation des campagnes marketing (email marketing, chatbots, CRM avancé...)",
             "value": "automatisation_campagnes",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises voulant automatiser le marketing."
           },
           {
             "label": "Amélioration de la gestion des données et reporting avancé (BI, Data Studio, Power BI...)",
             "value": "amelioration_data_reporting",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Pour consolider les informations et mieux piloter la stratégie via des tableaux de bord."
           },
           {
             "label": "Autre (précisez)",
             "value": "autre",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Si vous avez un besoin spécifique non listé ici.",
             "requiresTextInput": true
           }
@@ -854,73 +1256,116 @@
           {
             "label": "Partager du contenu personnel ou un blog (écriture, vidéos, art, lifestyle…)",
             "value": "blog_personnel",
-            "colors": ["red"],
+            "colors": [
+              "red"
+            ],
             "description": "Exclusivement pour les particuliers souhaitant partager du contenu personnel."
           },
           {
             "label": "Créer un site personnel (CV, portfolio, projet personnel…)",
             "value": "site_personnel",
-            "colors": ["red"],
+            "colors": [
+              "red"
+            ],
             "description": "Particulier souhaitant présenter son profil ou ses projets."
           },
           {
             "label": "Présenter mon activité et mes services en ligne",
             "value": "presentation_activite",
-            "colors": ["green"],
+            "colors": [
+              "green"
+            ],
             "description": "Auto-entrepreneur recherchant une visibilité professionnelle basique."
           },
           {
             "label": "Attirer plus de clients et générer des prospects (SEO, pub, réseaux sociaux…)",
             "value": "generer_prospects",
-            "colors": ["green", "blue"],
+            "colors": [
+              "green",
+              "blue"
+            ],
             "description": "Auto-entrepreneur ou TPE/PME souhaitant développer sa clientèle."
           },
           {
             "label": "Améliorer l’image de marque et la crédibilité de mon entreprise",
             "value": "ameliorer_image",
-            "colors": ["blue", "orange"],
+            "colors": [
+              "blue",
+              "orange"
+            ],
             "description": "Entreprises désirant renforcer son image professionnelle."
           },
           {
             "label": "Créer une communauté engagée autour de mon entreprise / activité",
             "value": "communaute_engagee",
-            "colors": ["blue", "orange"],
+            "colors": [
+              "blue",
+              "orange"
+            ],
             "description": "Entreprises visant à fédérer un public autour de sa marque."
           },
           {
             "label": "Augmenter les ventes et le chiffre d’affaires grâce au digital",
             "value": "augmenter_ventes",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Pour tout statut professionnel cherchant à booster ses ventes en ligne."
           },
           {
             "label": "Fidéliser ma clientèle (CRM, email automation, promotions…)",
             "value": "fideliser_clientele",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Mettre en place des outils pour retenir et satisfaire les clients existants."
           },
           {
             "label": "Gérer des processus internes plus efficacement (ERP, réservation, formulaires avancés…)",
             "value": "gestion_processus_internes",
-            "colors": ["blue", "orange"],
+            "colors": [
+              "blue",
+              "orange"
+            ],
             "description": "Entreprises cherchant à optimiser sa gestion interne."
           },
           {
             "label": "Développer un outil en ligne spécifique pour mon activité (ERP, application interne, espace client…)",
             "value": "developpement_outil_specifique",
-            "colors": ["orange", "yellow"],
+            "colors": [
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises plus grandes visant un outil sur mesure."
           },
           {
             "label": "Vendre des produits/services en ligne",
             "value": "ecommerce",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "De l’artisan particulier à la grande entreprise, souhaitant vendre en ligne."
           },
           {
             "label": "Autre (précisez)",
             "value": "autre",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Si votre objectif principal ne figure pas dans la liste.",
             "requiresTextInput": true
           }
@@ -935,61 +1380,97 @@
           {
             "label": "Blog ou espace de publication d’articles",
             "value": "blog_articles",
-            "colors": ["red"],
+            "colors": [
+              "red"
+            ],
             "description": "Particulier souhaitant publier régulièrement du contenu."
           },
           {
             "label": "Galerie photo/vidéo",
             "value": "galerie_photo_video",
-            "colors": ["red"],
+            "colors": [
+              "red"
+            ],
             "description": "Particulier mettant en avant un portfolio ou des créations visuelles."
           },
           {
             "label": "Formulaire de contact ou prise de rendez-vous",
             "value": "formulaire_contact",
-            "colors": ["green", "blue"],
+            "colors": [
+              "green",
+              "blue"
+            ],
             "description": "Entreprises facilitant la mise en relation."
           },
           {
             "label": "Système de réservation en ligne (RDV clients, coaching, etc.)",
             "value": "reservation_en_ligne",
-            "colors": ["green", "blue"],
+            "colors": [
+              "green",
+              "blue"
+            ],
             "description": "Planifier des rendez-vous ou prestations en ligne."
           },
           {
             "label": "E-commerce (Boutique en ligne, paiement sécurisé, gestion des stocks…)",
             "value": "ecommerce",
-            "colors": ["green", "blue", "orange"],
+            "colors": [
+              "green",
+              "blue",
+              "orange"
+            ],
             "description": "Entreprises vendant en ligne."
           },
           {
             "label": "Intégration avec des outils externes (CRM, ERP, outils métiers…)",
             "value": "integration_outils_externes",
-            "colors": ["blue", "orange"],
+            "colors": [
+              "blue",
+              "orange"
+            ],
             "description": "Entreprises souhaitant connecter le site à d’autres systèmes."
           },
           {
             "label": "Chat en ligne ou chatbot pour interagir avec les visiteurs",
             "value": "chatbot",
-            "colors": ["green", "blue", "orange"],
+            "colors": [
+              "green",
+              "blue",
+              "orange"
+            ],
             "description": "De l’auto-entrepreneur à la SAS, pour répondre rapidement aux prospects."
           },
           {
             "label": "Espace client / extranet",
             "value": "espace_client",
-            "colors": ["orange", "yellow"],
+            "colors": [
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises plus structurées proposant un accès sécurisé à leurs clients."
           },
           {
             "label": "Site multilingue",
             "value": "site_multilingue",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Tout statut ciblant un public international."
           },
           {
             "label": "Autre (précisez)",
             "value": "autre",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Si vous avez une fonctionnalité clé non listée ici.",
             "requiresTextInput": true
           }
@@ -1004,55 +1485,99 @@
           {
             "label": "Espace membre ou forum communautaire",
             "value": "espace_membre_forum",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Permet aux utilisateurs de s’inscrire et d’échanger sur un forum interne."
           },
           {
             "label": "Outil de collaboration en ligne (Drive, Slack, Trello, etc.)",
             "value": "outil_collaboration",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Plutôt destiné aux entreprises cherchant un espace collaboratif en ligne."
           },
           {
             "label": "Application mobile iOS/Android (Fonctionnalités dédiées)",
             "value": "application_mobile",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises souhaitant offrir un service mobile spécifique."
           },
           {
             "label": "Chatbot ou assistant virtuel plus évolué",
             "value": "chatbot_evolue",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Au-delà du simple chat en ligne, un assistant capable de répondre automatiquement."
           },
           {
             "label": "Système de gestion de documents (GED)",
             "value": "gestion_documents",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises gérant beaucoup de documents internes."
           },
           {
             "label": "Portail de formation en ligne (LMS)",
             "value": "portail_formation",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Pour proposer des cours, des modules e-learning ou du tutorat en ligne."
           },
           {
             "label": "Collecter plus de data ou mettre en place un tracking plus avancé",
             "value": "tracking_avance",
-            "colors": ["green", "blue", "orange", "yellow"],
+            "colors": [
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Améliorer la collecte de données et l’analyse pour des prises de décisions plus précises."
           },
           {
             "label": "Mise en conformité RGPD ou gestion des consentements",
             "value": "rgpd_conformite",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "S’assurer que votre site ou application respecte les obligations légales européennes."
           },
           {
             "label": "Autre (précisez)",
             "value": "autre",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Si vous avez une demande spécifique non listée.",
             "requiresTextInput": true
           }
@@ -1074,44 +1599,70 @@
           {
             "label": "Moins de 500€",
             "value": "moins_500",
-            "colors": ["red", "green"],
+            "colors": [
+              "red",
+              "green"
+            ],
             "description": "Particulier ou Auto-entrepreneur ayant un budget très restreint."
           },
           {
             "label": "Entre 500€ et 1000€",
             "value": "500_1000",
-            "colors": ["red", "green"],
+            "colors": [
+              "red",
+              "green",
+              "blue"
+            ],
             "description": "Particulier ambitieux ou Auto-entrepreneur avec un budget limité."
           },
           {
             "label": "Entre 1000€ et 3000€",
             "value": "1000_3000",
-            "colors": ["green", "blue"],
+            "colors": [
+              "green",
+              "blue"
+            ],
             "description": "Entreprises pouvant investir un peu plus pour un projet de qualité."
           },
           {
             "label": "Entre 3000€ et 5000€",
             "value": "3000_5000",
-            "colors": ["blue", "orange"],
+            "colors": [
+              "green",
+              "blue",
+              "orange"
+            ],
             "description": "Entreprises souhaitant un site plus élaboré."
           },
           {
             "label": "Entre 5000€ et 10 000€",
             "value": "5000_10000",
-            "colors": ["blue", "orange"],
+            "colors": [
+              "blue",
+              "orange"
+            ],
             "description": "entreprises misant sur un site professionnel complet."
           },
           {
             "label": "Plus de 10 000€",
             "value": "plus_10000",
-            "colors": ["orange", "yellow"],
+            "colors": [
+              "orange",
+              "yellow"
+            ],
             "description": "Structures plus importantes (EURL/SARL/SAS, Grande entreprise) pour un projet ambitieux."
           },
           {
             "label": "Je ne sais pas encore",
             "value": "indecis",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
-            "description": "Statuts incertains sur le budget nécessaire."
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
+            "description": "Incertains sur le budget nécessaire."
           }
         ]
       },
@@ -1124,61 +1675,94 @@
           {
             "label": "Créer un site web de base (Blog, portfolio, site personnel…)",
             "value": "site_web_base",
-            "colors": ["red"],
+            "colors": [
+              "red"
+            ],
             "description": "Particulier désirant un blog perso, un portfolio, etc."
           },
           {
             "label": "Acheter un nom de domaine et un hébergement",
             "value": "nom_domaine_hebergement",
-            "colors": ["red", "green"],
+            "colors": [
+              "red",
+              "green"
+            ],
             "description": "Particulier ou Auto-entrepreneur débutant qui n’a pas encore de nom de domaine."
           },
           {
             "label": "Concevoir et designer votre site (Webdesign, identité visuelle, charte graphique)",
             "value": "conception_design",
-            "colors": ["green", "blue"],
+            "colors": [
+              "green",
+              "blue"
+            ],
             "description": "Entreprises souhaitant un design professionnel."
           },
           {
             "label": "Optimiser le référencement naturel (SEO) (Stratégie SEO, mots-clés, backlinks, etc.)",
             "value": "optimisation_seo",
-            "colors": ["green", "blue"],
+            "colors": [
+              "green",
+              "blue"
+            ],
             "description": "Améliorer la visibilité du site sur Google pour Auto-entrepreneurs, TPE/PME."
           },
           {
             "label": "Installer un blog ou un système de réservation en ligne (Prise de rendez-vous…)",
             "value": "blog_reservation",
-            "colors": ["green", "blue"],
+            "colors": [
+              "green",
+              "blue"
+            ],
             "description": "Pour proposer du contenu ou gérer des RDV clients en ligne."
           },
           {
             "label": "Intégrer des outils externes (CRM, ERP, outils de gestion, API, solutions marketing)",
             "value": "integration_outils",
-            "colors": ["blue", "orange"],
+            "colors": [
+              "blue",
+              "orange"
+            ],
             "description": "Entreprises voulant connecter le site à d’autres systèmes."
           },
           {
             "label": "Automatiser certaines tâches (Email marketing, gestion des stocks, processus internes…)",
             "value": "automatisation_taches",
-            "colors": ["blue", "orange"],
+            "colors": [
+              "blue",
+              "orange"
+            ],
             "description": "Entreprises cherchant à optimiser leur workflow."
           },
           {
             "label": "Développer un site sur-mesure (Plateforme interne, extranet, solutions spécifiques…)",
             "value": "developpement_sur_mesure",
-            "colors": ["orange", "yellow"],
+            "colors": [
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises visant un outil parfaitement adapté."
           },
           {
             "label": "Gérer et maintenir le site (Mises à jour, sauvegardes, sécurité, corrections techniques)",
             "value": "gestion_maintenance",
-            "colors": ["blue", "orange", "yellow"],
+            "colors": [
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Entreprises voulant une maintenance pro."
           },
           {
             "label": "Gérer le site en toute autonomie (Je préfère m’occuper moi-même de tout)",
             "value": "autonomie_site",
-            "colors": ["red", "green", "blue", "orange", "yellow"],
+            "colors": [
+              "red",
+              "green",
+              "blue",
+              "orange",
+              "yellow"
+            ],
             "description": "Tout statut souhaitant conserver le contrôle total de la gestion du site."
           }
         ]
@@ -1187,41 +1771,60 @@
   },
   {
     "sectionId": 16,
-    "sectionTitle": "Contact et Conclusion",
-    "sectionDescription": "Dernière section du questionnaire, permettant un suivi ou de laisser des remarques.",
+    "sectionTitle": "Contact - Consultation",
+    "sectionDescription": "Souhaitez-vous être contacté(e) pour une consultation gratuite ou un devis sur vos besoins digitaux ?",
     "questions": [
       {
-        "id": 24,
+        "id": "24",
         "text": "Souhaitez-vous être contacté(e) pour une consultation gratuite ou un devis sur vos besoins digitaux ?",
         "type": "radio",
         "isRequired": true,
         "options": [
           {
             "label": "Oui",
-            "value": "oui",
-            "nextStep": {
-              "questionId": 25
-            }
+            "value": "oui"
           },
           {
             "label": "Non",
-            "value": "non",
-            "nextStep": {
-              "questionId": 26
-            }
+            "value": "non"
           }
         ],
-        "colors": ["red", "green", "blue", "orange", "yellow"]
-      },
+        "colors": [
+          "red",
+          "green",
+          "blue",
+          "orange",
+          "yellow"
+        ],
+        "nextStep": {
+          "oui": {
+            "sectionId": 17,
+            "questionId": 25
+          },
+          "non": {
+            "sectionId": 18,
+            "questionId": 26
+          }
+        }
+      }
+    ]
+  },
+  {
+    "sectionId": 17,
+    "sectionTitle": "Mode de contact",
+    "sectionDescription": "Choisissez votre mode de contact préféré.",
+    "questions": [
       {
-        "id": 25,
+        "id": "25",
         "text": "Quel est votre mode de contact préféré ?",
         "type": "radio",
         "isRequired": true,
         "conditions": [
           {
-            "questionId": 24,
-            "equals": ["oui"]
+            "questionId": "24",
+            "equals": [
+              "oui"
+            ]
           }
         ],
         "options": [
@@ -1239,20 +1842,34 @@
             "requiresTextInput": true
           }
         ],
-        "colors": ["red", "green", "blue", "orange", "yellow"],
-        "nextStep": {
-          "default": {
-            "questionId": 26
-          }
-        }
-      },
+        "colors": [
+          "red",
+          "green",
+          "blue",
+          "orange",
+          "yellow"
+        ]
+      }
+    ]
+  },
+  {
+    "sectionId": 18,
+    "sectionTitle": "Remarques",
+    "sectionDescription": "Laissez vos remarques ou suggestions sur ce questionnaire ou sur vos besoins digitaux.",
+    "questions": [
       {
-        "id": 26,
+        "id": "26",
         "text": "Avez-vous des remarques ou suggestions sur ce questionnaire ou sur vos besoins digitaux ?",
         "type": "text",
         "isRequired": false,
         "placeholder": "Votre message ici...",
-        "colors": ["red", "green", "blue", "orange", "yellow"]
+        "colors": [
+          "red",
+          "green",
+          "blue",
+          "orange",
+          "yellow"
+        ]
       }
     ]
   }

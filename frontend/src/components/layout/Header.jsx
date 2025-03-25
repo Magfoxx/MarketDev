@@ -36,7 +36,7 @@ const Header = () => {
 
         {/* Navbar Desktop  */}
         <div className="hidden xl:flex flex-1 justify-end dark:text-white text-secondary">
-          <Navbar containerStyles="flex gap-x-6 xl:gap-x-10 text-lg" />
+          <Navbar containerStyles="flex !gap-x-6 xl:gap-x-10 text-lg w-full" />
         </div>
 
         {/* Icone menu burger (Mobile & Tablette) */}

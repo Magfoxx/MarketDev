@@ -3,16 +3,26 @@ import React from "react";
 const QuestionInput = ({
   question,
   valeur,
-  valeurComplementaire, // Nouvelle prop pour la réponse complémentaire
-  erreur, // Prop pour le message d'erreur
+  valeurComplementaire,
+  erreur,
   onChangement,
   onChangementCheckbox,
+  statusColor,
 }) => {
-  // Définition des classes pour input et textarea
   const classesInput =
     "w-full mt-3 p-3 text-secondary dark:text-white ring-1 ring-gray-300 dark:ring-gray-600 rounded-lg outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700";
   const classesTextarea =
     "w-full mt-2 p-3 ring-1 ring-gray-300 dark:ring-gray-600 rounded-lg outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-secondary dark:text-white min-h-[50px] max-h-[150px]";
+
+  // Filtrer les options si la propriété colors est présente :
+  // Si statusColor est défini, on ne garde que les options dont colors contient statusColor.
+  const filtrerOptions = (options) => {
+    if (!statusColor) return options;
+    return options.filter((option) => {
+      if (!option.colors || option.colors.length === 0) return true;
+      return option.colors.includes(statusColor);
+    });
+  };
 
   switch (question.type) {
     case "text":
@@ -32,7 +42,7 @@ const QuestionInput = ({
     case "radio":
       return (
         <div>
-          {question.options.map((option) => (
+          {filtrerOptions(question.options).map((option) => (
             <div key={option.value}>
               <label className="flex items-center gap-2 text-secondary dark:text-white">
                 <input
@@ -71,7 +81,7 @@ const QuestionInput = ({
             <option value="" disabled>
               Sélectionnez une option
             </option>
-            {question.options.map((option) => (
+            {filtrerOptions(question.options).map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -93,7 +103,7 @@ const QuestionInput = ({
     case "multi-select":
       return (
         <div>
-          {question.options.map((option) => (
+          {filtrerOptions(question.options).map((option) => (
             <div key={option.value}>
               <label className="flex items-center gap-2 text-secondary dark:text-white mt-4">
                 <input
@@ -106,7 +116,7 @@ const QuestionInput = ({
                   onChange={() =>
                     onChangementCheckbox(question.id, option.value)
                   }
-                  className="max-w-5 max-h-5 accent-primary mt-1 cursor-pointer"
+                  className="w-5 h-5 accent-primary mt-1 cursor-pointer"
                 />
                 <span className="leading-tight">{option.label}</span>
               </label>

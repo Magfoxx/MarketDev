@@ -110,7 +110,7 @@ p {
 }
 
 .max-padd-footer {
-  @apply min-w-full w-full px-6 md:px-12 lg:px-20 xl:px-32  pt-8 mx-auto text-gray-700 dark:text-white;
+  @apply min-w-full w-full px-6 md:px-12 lg:px-20 xl:px-32 pt-8 mx-auto text-gray-700 dark:text-white;
 }
 
 /* Conteneur principal */
@@ -120,7 +120,7 @@ p {
 
 /* LoaderSpinner*/
 .loader {
-  @apply flex justify-items-center justify-center m-auto overflow-hidden text-center relative px-12 text-[48px] leading-[86px] font-sans text-secondary dark:text-white w-85;
+  @apply flex justify-items-center justify-center m-auto overflow-hidden text-center relative text-[32px] leading-[86px] font-sans text-secondary dark:text-white w-80;
 }
 
 /* Styles pour les pseudo-éléments ::before et ::after */

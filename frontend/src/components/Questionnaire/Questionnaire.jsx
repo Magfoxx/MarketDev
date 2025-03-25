@@ -4,6 +4,7 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import QuestionInput from "./QuestionInput";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import gererRedirection from "./QuestionnaireRedirection"; // Import de la fonction
 
 const Questionnaire = () => {
   // États
@@ -12,7 +13,7 @@ const Questionnaire = () => {
   const [erreursFormulaire, setErreursFormulaire] = useState({});
   const [chargement, setChargement] = useState(true);
   const [erreur, setErreur] = useState(null);
-  const [currentSectionIndex, setCurrentSectionIndex] = useState(0); // Affichage des sections
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
   useEffect(() => {
     axios
@@ -30,34 +31,46 @@ const Questionnaire = () => {
 
   if (chargement)
     return (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center h-[70vh]">
         <span className="loader">Chargement...</span>
       </div>
     );
   if (erreur) return <div>{erreur}</div>;
   if (!questions.length) return <div>Aucune donnée disponible.</div>;
 
-  // Exemple de tableau d'emails déjà utilisés pour la validation email
+  // Exemple d'emails déjà utilisés (pour validation email)
   const emailsUtilises = ["exemple@domaine.com", "test@example.com"];
 
-  // Fonction de validation d'une question (pour le type email : format et unicité)
-  const validerQuestion = (question, reponse) => {
-    if (!reponse || (typeof reponse === "string" && reponse.trim() === "")) {
-      return "Ce champ est requis *";
-    }
-    if (question.type === "email" && reponse) {
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      if (!emailRegex.test(reponse.trim())) {
-        return "Veuillez entrer une adresse email valide *";
+  // Fonction de validation d'une question
+  const validerQuestion = (question, rep) => {
+    if (question.type === "multi-select") {
+      if (!Array.isArray(rep) || rep.length === 0) {
+        return "Ce champ est requis *";
       }
-      if (emailsUtilises.includes(reponse.trim().toLowerCase())) {
-        return "Cet email est déjà utilisé *";
+      if (rep.includes("autre")) {
+        const repAutre = reponses[`${question.id}_other`];
+        if (!repAutre || repAutre.trim() === "") {
+          return "Veuillez préciser votre réponse pour 'autre' *";
+        }
+      }
+    } else {
+      if (!rep || (typeof rep === "string" && rep.trim() === "")) {
+        return "Ce champ est requis *";
+      }
+      if (question.type === "email") {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(rep.trim())) {
+          return "Veuillez entrer une adresse email valide *";
+        }
+        if (emailsUtilises.includes(rep.trim().toLowerCase())) {
+          return "Cet email est déjà utilisé *";
+        }
       }
     }
     return "";
   };
 
-  // Fonction qui vérifie si une question doit être affichée en fonction des conditions
+  // Vérifie si une question doit être affichée selon ses conditions
   const doitAfficherQuestion = (question) => {
     if (!question.conditions || question.conditions.length === 0) return true;
     return question.conditions.every((cond) => {
@@ -66,7 +79,7 @@ const Questionnaire = () => {
     });
   };
 
-  // Fonction de validation de la section actuelle
+  // Validation de la section actuelle
   const validerSectionActuelle = () => {
     const sectionActuel = questions[currentSectionIndex];
     let estValide = true;
@@ -75,34 +88,10 @@ const Questionnaire = () => {
     sectionActuel.questions.forEach((question) => {
       if (doitAfficherQuestion(question) && question.isRequired) {
         const rep = reponses[question.id];
-        let erreur = "";
-        if (question.type === "email") {
-          erreur = validerQuestion(question, rep);
-        } else {
-          if (!rep || (typeof rep === "string" && rep.trim() === "")) {
-            erreur = "Ce champ est requis *";
-          }
-        }
-        // Vérification pour le cas où la réponse principale est "autre"
-        if (question.type === "multi-select") {
-          // Pour multi-select, rep est supposé être un tableau
-          if (Array.isArray(rep) && rep.includes("autre")) {
-            const repAutre = reponses[`${question.id}_other`];
-            if (!repAutre || repAutre.trim() === "") {
-              erreur = "Veuillez préciser votre réponse pour 'autre' *";
-            }
-          }
-        } else {
-          if (rep === "autre") {
-            const repAutre = reponses[`${question.id}_other`];
-            if (!repAutre || repAutre.trim() === "") {
-              erreur = "Veuillez préciser votre réponse pour 'autre' *";
-            }
-          }
-        }
-        if (erreur !== "") {
+        const erreurMsg = validerQuestion(question, rep);
+        if (erreurMsg) {
           estValide = false;
-          erreurs[question.id] = erreur;
+          erreurs[question.id] = erreurMsg;
         }
       }
     });
@@ -111,6 +100,39 @@ const Questionnaire = () => {
       toast.error("Veuillez remplir tous les champs requis de cette section.");
     }
     return estValide;
+  };
+
+  // Fonction qui retourne la couleur associée au statut (question 4)
+  const getStatusColor = () => {
+    const statut = reponses["4"];
+    switch (statut) {
+      case "particulier":
+        return "red";
+      case "auto_entrepreneur":
+        return "green";
+      case "tpe_pme":
+        return "blue";
+      case "sarl_eurl_sas_sasu":
+        return "orange";
+      case "grande_entreprise":
+        return "yellow";
+      default:
+        return "";
+    }
+  };
+
+  // Gestion des changements pour les inputs simples
+  const gererChangementInput = (questionId, valeur) => {
+    setReponses((prev) => ({ ...prev, [questionId]: valeur }));
+  };
+
+  // Gestion des changements pour les checkboxes (multi-select)
+  const gererChangementCheckbox = (idQuestion, valeurOption) => {
+    const selectionsActuelles = reponses[idQuestion] || [];
+    const nouvelleValeur = selectionsActuelles.includes(valeurOption)
+      ? selectionsActuelles.filter((v) => v !== valeurOption)
+      : [...selectionsActuelles, valeurOption];
+    setReponses((prev) => ({ ...prev, [idQuestion]: nouvelleValeur }));
   };
 
   // Affichage de la section actuelle
@@ -140,11 +162,11 @@ const Questionnaire = () => {
                   <QuestionInput
                     question={question}
                     valeur={reponses[question.id]}
-                    // On passe également la valeur complémentaire, si existante, via la clé question.id+"_other"
                     valeurComplementaire={reponses[`${question.id}_other`]}
                     erreur={erreursFormulaire[question.id]}
                     onChangement={gererChangementInput}
                     onChangementCheckbox={gererChangementCheckbox}
+                    statusColor={getStatusColor()}
                   />
                 </div>
               )
@@ -154,42 +176,39 @@ const Questionnaire = () => {
     );
   };
 
-  // Fonction de gestion des changements pour les inputs simples
-  const gererChangementInput = (questionId, valeur) => {
-    setReponses({ ...reponses, [questionId]: valeur });
-  };
-
-  // Fonction de gestion des changements pour les checkboxes (multi-select)
-  const gererChangementCheckbox = (idQuestion, valeurOption) => {
-    const selectionsActuelles = reponses[idQuestion] || [];
-    const nouvelleValeur = selectionsActuelles.includes(valeurOption)
-      ? selectionsActuelles.filter((v) => v !== valeurOption)
-      : [...selectionsActuelles, valeurOption];
-    setReponses((prev) => ({ ...prev, [idQuestion]: nouvelleValeur }));
+  // Bouton "Suivant" : Validation puis redirection ou passage à la section suivante
+  const boutonSuivant = () => {
+    if (validerSectionActuelle()) {
+      const sectionActuel = questions[currentSectionIndex];
+      // Recherche la première question qui possède une propriété nextStep dans la section
+      const questionAvecNextStep = sectionActuel.questions.find(
+        (q) => q.nextStep
+      );
+      if (questionAvecNextStep) {
+        const valeur = reponses[questionAvecNextStep.id];
+        // Utilisation de la fonction de redirection importée
+        gererRedirection(
+          questionAvecNextStep,
+          valeur,
+          reponses,
+          questions,
+          currentSectionIndex,
+          setCurrentSectionIndex
+        );
+      } else {
+        setCurrentSectionIndex(currentSectionIndex + 1);
+      }
+    }
   };
 
   return (
     <div className="max-padd-container bg-gray-200 dark:bg-gray-800 rounded-lg shadow-lg p-6 md:w-[600px] h-auto">
       {affichageSection()}
-      <div className="flex justify-between mt-4">
-        <div className="flex">
-          {currentSectionIndex > 0 && (
-            <button
-              onClick={() => setCurrentSectionIndex(currentSectionIndex - 1)}
-              className="btn-secondary py-2 px-4 text-lg"
-            >
-              <FaArrowLeft />
-            </button>
-          )}
-        </div>
+      <div className="flex justify-end mt-4">
         <div className="flex">
           {currentSectionIndex < questions.length - 1 && (
             <button
-              onClick={() => {
-                if (validerSectionActuelle()) {
-                  setCurrentSectionIndex(currentSectionIndex + 1);
-                }
-              }}
+              onClick={boutonSuivant}
               className="btn-primary py-2 px-4 text-lg ml-auto"
             >
               <FaArrowRight />
