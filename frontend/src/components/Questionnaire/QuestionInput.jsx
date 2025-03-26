@@ -9,13 +9,15 @@ const QuestionInput = ({
   onChangementCheckbox,
   statusColor,
 }) => {
+  // Classes de base pour les inputs et textareas
   const classesInput =
     "w-full mt-3 p-3 text-secondary dark:text-white ring-1 ring-gray-300 dark:ring-gray-600 rounded-lg outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700";
   const classesTextarea =
     "w-full mt-2 p-3 ring-1 ring-gray-300 dark:ring-gray-600 rounded-lg outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-secondary dark:text-white min-h-[50px] max-h-[150px]";
+  const classesDescription =
+    "absolute left-0 top-full mt-2 hidden group-hover:block bg-white dark:bg-secondary text-[14px] text-gray-800 dark:text-gray-100 p-2 ring-1 ring-primary rounded-lg shadow-lg z-10";
 
-  // Filtrer les options si la propriété colors est présente :
-  // Si statusColor est défini, on ne garde que les options dont colors contient statusColor.
+  // Filtrer les options selon la couleur du statut
   const filtrerOptions = (options) => {
     if (!statusColor) return options;
     return options.filter((option) => {
@@ -36,37 +38,34 @@ const QuestionInput = ({
             onChange={(e) => onChangement(question.id, e.target.value)}
             className={classesInput}
           />
-          {erreur && <span className="text-red-500 text-sm">{erreur}</span>}
+          {erreur && (
+            <span className="text-red-400 text-sm font-bold">{erreur}</span>
+          )}
         </>
       );
     case "radio":
       return (
         <div>
           {filtrerOptions(question.options).map((option) => (
-            <div key={option.value}>
-              <label className="flex items-center gap-2 text-secondary dark:text-white">
+            <div key={option.value} className="group relative">
+              <label className="flex items-center gap-2 text-secondary dark:text-white cursor-pointer">
                 <input
                   type="radio"
                   value={option.value}
                   checked={valeur === option.value}
                   onChange={() => onChangement(question.id, option.value)}
-                  className="mr-2 accent-primary my-3 cursor-pointer"
+                  className="mr-2 accent-primary my-3"
                 />
-                {option.label}
+                <span>{option.label}</span>
               </label>
-              {option.requiresTextInput && valeur === "autre" && (
-                <textarea
-                  placeholder="Précisez..."
-                  value={valeurComplementaire || ""}
-                  onChange={(e) =>
-                    onChangement(`${question.id}_other`, e.target.value)
-                  }
-                  className={classesTextarea}
-                />
+              {option.description && (
+                <div className={classesDescription}>{option.description}</div>
               )}
             </div>
           ))}
-          {erreur && <span className="text-red-500 text-sm">{erreur}</span>}
+          {erreur && (
+            <span className="text-red-400 text-sm font-bold">{erreur}</span>
+          )}
         </div>
       );
     case "select":
@@ -82,12 +81,18 @@ const QuestionInput = ({
               Sélectionnez une option
             </option>
             {filtrerOptions(question.options).map((option) => (
-              <option key={option.value} value={option.value}>
+              <option
+                key={option.value}
+                value={option.value}
+                title={option.description || ""}
+              >
                 {option.label}
               </option>
             ))}
           </select>
-          {erreur && <span className="text-red-500 text-sm">{erreur}</span>}
+          {erreur && (
+            <span className="text-red-400 text-sm font-bold">{erreur}</span>
+          )}
           {valeur === "autre" && (
             <textarea
               placeholder="Précisez..."
@@ -104,8 +109,8 @@ const QuestionInput = ({
       return (
         <div>
           {filtrerOptions(question.options).map((option) => (
-            <div key={option.value}>
-              <label className="flex items-center gap-2 text-secondary dark:text-white mt-4">
+            <div key={option.value} className="group relative">
+              <label className="flex items-center gap-2 text-secondary dark:text-white mt-4 cursor-pointer">
                 <input
                   type="checkbox"
                   name={`question-${question.id}`}
@@ -116,13 +121,18 @@ const QuestionInput = ({
                   onChange={() =>
                     onChangementCheckbox(question.id, option.value)
                   }
-                  className="w-5 h-5 accent-primary mt-1 cursor-pointer"
+                  className="max-w-5 h-5 accent-primary mt-1 cursor-pointer"
                 />
                 <span className="leading-tight">{option.label}</span>
               </label>
+              {option.description && (
+                <div className={classesDescription}>{option.description}</div>
+              )}
             </div>
           ))}
-          {erreur && <span className="text-red-500 text-sm">{erreur}</span>}
+          {erreur && (
+            <span className="text-red-400 text-sm font-bold">{erreur}</span>
+          )}
           {Array.isArray(valeur) && valeur.includes("autre") && (
             <textarea
               placeholder="Précisez..."

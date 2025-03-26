@@ -4,7 +4,7 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import QuestionInput from "./QuestionInput";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import gererRedirection from "./QuestionnaireRedirection"; // Import de la fonction
+import gererRedirection from "./QuestionnaireRedirection"; // Fonction de redirection externalisée
 
 const Questionnaire = () => {
   // États
@@ -50,7 +50,7 @@ const Questionnaire = () => {
       if (rep.includes("autre")) {
         const repAutre = reponses[`${question.id}_other`];
         if (!repAutre || repAutre.trim() === "") {
-          return "Veuillez préciser votre réponse pour 'autre' *";
+          return "Veuillez préciser votre réponse *";
         }
       }
     } else {
@@ -70,7 +70,7 @@ const Questionnaire = () => {
     return "";
   };
 
-  // Vérifie si une question doit être affichée selon ses conditions
+  // Vérifie si une question doit être affichée en fonction de ses conditions
   const doitAfficherQuestion = (question) => {
     if (!question.conditions || question.conditions.length === 0) return true;
     return question.conditions.every((cond) => {
@@ -95,6 +95,7 @@ const Questionnaire = () => {
         }
       }
     });
+
     setErreursFormulaire(erreurs);
     if (!estValide) {
       toast.error("Veuillez remplir tous les champs requis de cette section.");
@@ -102,7 +103,7 @@ const Questionnaire = () => {
     return estValide;
   };
 
-  // Fonction qui retourne la couleur associée au statut (question 4)
+  // Fonction qui retourne la couleur associée au statut (basée sur la question 4)
   const getStatusColor = () => {
     const statut = reponses["4"];
     switch (statut) {
@@ -153,7 +154,7 @@ const Questionnaire = () => {
             (question) =>
               doitAfficherQuestion(question) && (
                 <div key={question.id}>
-                  <p className="!mt-5">
+                  <p className="!mt-5 !text-secondary dark:!text-white !font-semibold">
                     {question.text}
                     {question.isRequired && (
                       <span className="text-red-500"> * </span>
@@ -204,14 +205,46 @@ const Questionnaire = () => {
   return (
     <div className="max-padd-container bg-gray-200 dark:bg-gray-800 rounded-lg shadow-lg p-6 md:w-[600px] h-auto">
       {affichageSection()}
-      <div className="flex justify-end mt-4">
+      <div className="flex justify-between mt-4">
         <div className="flex">
-          {currentSectionIndex < questions.length - 1 && (
+          {currentSectionIndex > 0 && (
+            <button
+              onClick={() => setCurrentSectionIndex(currentSectionIndex - 1)}
+              className="btn-secondary py-2 px-4 text-lg"
+            >
+              <FaArrowLeft />
+            </button>
+          )}
+        </div>
+        <div className="flex">
+          {currentSectionIndex < questions.length - 1 ? (
             <button
               onClick={boutonSuivant}
               className="btn-primary py-2 px-4 text-lg ml-auto"
             >
               <FaArrowRight />
+            </button>
+          ) : (
+            // Lorsque c'est la dernière section, on affiche le bouton "Envoyer"
+            <button
+              onClick={() => {
+                if (validerSectionActuelle()) {
+                  axios
+                    .post("http://localhost:5001/api/responses", reponses)
+                    .then(() => {
+                      toast.success("Formulaire soumis avec succès !");
+                    })
+                    .catch((err) => {
+                      console.error("Erreur lors de la soumission :", err);
+                      toast.error(
+                        "Une erreur est survenue lors de la soumission."
+                      );
+                    });
+                }
+              }}
+              className="btn-primary py-2 px-4 text-lg ml-auto"
+            >
+              Envoyer
             </button>
           )}
         </div>

@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/mongodb.js";
 import questionRoutes from "./routes/questionsRoutes.js";
+import responseRoutes from "./routes/responseRoutes.js";
 
 // Charger les variables d'environnement
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(cors());
 
 // Routes API
 app.use("/api/questions", questionRoutes);
+app.use("/api/responses", responseRoutes);
 
 // Route principale pour tester l'API
 app.get("/", (req, res) => {
