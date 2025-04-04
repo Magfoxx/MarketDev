@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import QuestionInput from "./QuestionInput";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import gererRedirection from "./QuestionnaireRedirection"; // Fonction de redirection externalisée
+import gererRedirection from "./QuestionnaireRedirection";
 
 const Questionnaire = () => {
   // États
@@ -14,6 +14,11 @@ const Questionnaire = () => {
   const [chargement, setChargement] = useState(true);
   const [erreur, setErreur] = useState(null);
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  const [emailDuplique, setEmailDuplique] = useState(false);
+  const [isVerifyingEmail, setIsVerifyingEmail] = useState(false);
+
+  // Pour implémenter un debounce sur le check email
+  const emailTimeoutRef = useRef(null);
 
   useEffect(() => {
     axios
@@ -38,10 +43,9 @@ const Questionnaire = () => {
   if (erreur) return <div>{erreur}</div>;
   if (!questions.length) return <div>Aucune donnée disponible.</div>;
 
-  // Exemple d'emails déjà utilisés (pour validation email)
+  // Exemple d'emails pour tests locaux
   const emailsUtilises = ["exemple@domaine.com", "test@example.com"];
 
-  // Fonction de validation d'une question
   const validerQuestion = (question, rep) => {
     if (question.type === "multi-select") {
       if (!Array.isArray(rep) || rep.length === 0) {
@@ -50,7 +54,7 @@ const Questionnaire = () => {
       if (rep.includes("autre")) {
         const repAutre = reponses[`${question.id}_other`];
         if (!repAutre || repAutre.trim() === "") {
-          return "Veuillez préciser votre réponse *";
+          return "Veuillez préciser votre réponse pour 'autre' *";
         }
       }
     } else {
@@ -65,12 +69,14 @@ const Questionnaire = () => {
         if (emailsUtilises.includes(rep.trim().toLowerCase())) {
           return "Cet email est déjà utilisé *";
         }
+        if (emailDuplique) {
+          return "Cet email est déjà utilisé *";
+        }
       }
     }
     return "";
   };
 
-  // Vérifie si une question doit être affichée en fonction de ses conditions
   const doitAfficherQuestion = (question) => {
     if (!question.conditions || question.conditions.length === 0) return true;
     return question.conditions.every((cond) => {
@@ -79,7 +85,6 @@ const Questionnaire = () => {
     });
   };
 
-  // Validation de la section actuelle
   const validerSectionActuelle = () => {
     const sectionActuel = questions[currentSectionIndex];
     let estValide = true;
@@ -95,7 +100,6 @@ const Questionnaire = () => {
         }
       }
     });
-
     setErreursFormulaire(erreurs);
     if (!estValide) {
       toast.error("Veuillez remplir tous les champs requis de cette section.");
@@ -103,7 +107,30 @@ const Questionnaire = () => {
     return estValide;
   };
 
-  // Fonction qui retourne la couleur associée au statut (basée sur la question 4)
+  // Vérification d'unicité de l'email
+  const handleEmailBlur = (email) => {
+    if (!email) return;
+    axios
+      .get(
+        `http://localhost:5001/api/responses?email=${email
+          .trim()
+          .toLowerCase()}`
+      )
+      .then((response) => {
+        if (response.data && response.data.length > 0) {
+          setEmailDuplique(true);
+        } else {
+          setEmailDuplique(false);
+        }
+      })
+      .catch((err) => {
+        console.error(
+          "Erreur lors de la vérification de l'unicité de l'email",
+          err
+        );
+      });
+  };
+
   const getStatusColor = () => {
     const statut = reponses["4"];
     switch (statut) {
@@ -122,12 +149,10 @@ const Questionnaire = () => {
     }
   };
 
-  // Gestion des changements pour les inputs simples
   const gererChangementInput = (questionId, valeur) => {
     setReponses((prev) => ({ ...prev, [questionId]: valeur }));
   };
 
-  // Gestion des changements pour les checkboxes (multi-select)
   const gererChangementCheckbox = (idQuestion, valeurOption) => {
     const selectionsActuelles = reponses[idQuestion] || [];
     const nouvelleValeur = selectionsActuelles.includes(valeurOption)
@@ -136,7 +161,6 @@ const Questionnaire = () => {
     setReponses((prev) => ({ ...prev, [idQuestion]: nouvelleValeur }));
   };
 
-  // Affichage de la section actuelle
   const affichageSection = () => {
     const sectionActuel = questions[currentSectionIndex];
     return (
@@ -154,7 +178,7 @@ const Questionnaire = () => {
             (question) =>
               doitAfficherQuestion(question) && (
                 <div key={question.id}>
-                  <p className="!mt-5 !text-secondary dark:!text-white !font-semibold">
+                  <p className="!mt-5">
                     {question.text}
                     {question.isRequired && (
                       <span className="text-red-500"> * </span>
@@ -167,6 +191,7 @@ const Questionnaire = () => {
                     erreur={erreursFormulaire[question.id]}
                     onChangement={gererChangementInput}
                     onChangementCheckbox={gererChangementCheckbox}
+                    onEmailBlur={handleEmailBlur}
                     statusColor={getStatusColor()}
                   />
                 </div>
@@ -177,17 +202,43 @@ const Questionnaire = () => {
     );
   };
 
-  // Bouton "Suivant" : Validation puis redirection ou passage à la section suivante
-  const boutonSuivant = () => {
+  const boutonSuivant = async () => {
+    // Si l'email existe (par exemple, la question "3" est de type email)
+    if (reponses["3"]) {
+      setIsVerifyingEmail(true);
+      try {
+        // On effectue la vérification d'unicité en interrogeant la collection Response
+        const response = await axios.get(
+          `http://localhost:5001/api/responses?email=${reponses["3"]
+            .trim()
+            .toLowerCase()}`
+        );
+        if (response.data && response.data.length > 0) {
+          setEmailDuplique(true);
+          toast.error(
+            "Cet email est déjà utilisé. Veuillez en saisir un autre."
+          );
+          setIsVerifyingEmail(false);
+          return;
+        } else {
+          setEmailDuplique(false);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la vérification de l'email", error);
+        toast.error("Erreur lors de la vérification de l'email.");
+        setIsVerifyingEmail(false);
+        return;
+      }
+      setIsVerifyingEmail(false);
+    }
+
     if (validerSectionActuelle()) {
       const sectionActuel = questions[currentSectionIndex];
-      // Recherche la première question qui possède une propriété nextStep dans la section
       const questionAvecNextStep = sectionActuel.questions.find(
         (q) => q.nextStep
       );
       if (questionAvecNextStep) {
         const valeur = reponses[questionAvecNextStep.id];
-        // Utilisation de la fonction de redirection importée
         gererRedirection(
           questionAvecNextStep,
           valeur,
@@ -199,6 +250,21 @@ const Questionnaire = () => {
       } else {
         setCurrentSectionIndex(currentSectionIndex + 1);
       }
+    }
+  };
+
+  const boutonEnvoyer = () => {
+    if (validerSectionActuelle()) {
+      axios
+        .post("http://localhost:5001/api/responses", reponses)
+        .then(() => {
+          toast.success("Formulaire soumis avec succès !");
+          // Optionnel : réinitialiser l'état ou rediriger l'utilisateur
+        })
+        .catch((err) => {
+          console.error("Erreur lors de la soumission :", err);
+          toast.error("Une erreur est survenue lors de la soumission.");
+        });
     }
   };
 
@@ -221,27 +287,13 @@ const Questionnaire = () => {
             <button
               onClick={boutonSuivant}
               className="btn-primary py-2 px-4 text-lg ml-auto"
+              disabled={isVerifyingEmail}
             >
               <FaArrowRight />
             </button>
           ) : (
-            // Lorsque c'est la dernière section, on affiche le bouton "Envoyer"
             <button
-              onClick={() => {
-                if (validerSectionActuelle()) {
-                  axios
-                    .post("http://localhost:5001/api/responses", reponses)
-                    .then(() => {
-                      toast.success("Formulaire soumis avec succès !");
-                    })
-                    .catch((err) => {
-                      console.error("Erreur lors de la soumission :", err);
-                      toast.error(
-                        "Une erreur est survenue lors de la soumission."
-                      );
-                    });
-                }
-              }}
+              onClick={boutonEnvoyer}
               className="btn-primary py-2 px-4 text-lg ml-auto"
             >
               Envoyer

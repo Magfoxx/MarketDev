@@ -4,38 +4,31 @@ import Questions from "../models/Questions.js";
 
 const router = express.Router();
 
-// Route pour insérer les questions depuis le fichier questionnaire.json dans la base de données
+// Insérer les questions depuis le fichier JSON
 router.post("/insert", insertQuestions);
 
-
-// Route pour récupérer toutes les questions triées
+// Récupérer toutes les questions triées par sectionId
 router.get("/", async (req, res) => {
   try {
     const questions = await Questions.find().sort({ sectionId: 1 });
-    // console.log(questions)
-    res.json(questions)
+    res.json(questions);
   } catch (error) {
-    console.error("❌ Erreur lors de la récupération des questions :", error)
+    console.error("❌ Erreur lors de la récupération des questions :", error);
     res.status(500).json({ message: "Erreur lors de la récupération des questions" });
   }
 });
 
-// Route pour supprimer une question
+// Supprimer une question par son id (dans la section)
 router.delete("/questions/:questionId", async (req, res) => {
   try {
     const { questionId } = req.params;
-
-    // On supprime la question dont l'id est questionId
     const result = await Questions.updateOne(
-      { "questions.id": Number(questionId) },              // Cherche la section qui a une question avec l'id questionId
-      { $pull: { questions: { id: questionId } } } // Retire du tableau la question correspondante
+      { "questions.id": Number(questionId) },
+      { $pull: { questions: { id: questionId } } }
     );
-
     if (result.modifiedCount === 0) {
-      // Aucune question n'a été supprimée
       return res.status(404).json({ message: "Question non trouvée" });
     }
-
     res.json({ message: "Question supprimée avec succès" });
   } catch (error) {
     console.error("Erreur lors de la suppression :", error);
