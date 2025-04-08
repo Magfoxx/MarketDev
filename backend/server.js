@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/mongodb.js";
 import questionRoutes from "./routes/questionsRoutes.js";
 import responseRoutes from "./routes/responseRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(cors());
 
 app.use("/api/questions", questionRoutes);
 app.use("/api/responses", responseRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.get("/", (req, res) => {
   res.send("🚀 API en cours d'exécution !");
