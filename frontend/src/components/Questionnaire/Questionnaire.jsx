@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import QuestionInput from "./QuestionInput";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,8 +17,8 @@ const Questionnaire = () => {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [emailDuplique, setEmailDuplique] = useState(false);
   const [isVerifyingEmail, setIsVerifyingEmail] = useState(false);
-
-  // Pour implémenter un debounce sur le check email
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const navigate = useNavigate();
   const emailTimeoutRef = useRef(null);
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const Questionnaire = () => {
   if (erreur) return <div>{erreur}</div>;
   if (!questions.length) return <div>Aucune donnée disponible.</div>;
 
-  // Exemple d'emails pour tests locaux
+  // Exemple d'emails pour tests locaux (optionnel)
   const emailsUtilises = ["exemple@domaine.com", "test@example.com"];
 
   const validerQuestion = (question, rep) => {
@@ -100,6 +101,7 @@ const Questionnaire = () => {
         }
       }
     });
+
     setErreursFormulaire(erreurs);
     if (!estValide) {
       toast.error("Veuillez remplir tous les champs requis de cette section.");
@@ -107,9 +109,10 @@ const Questionnaire = () => {
     return estValide;
   };
 
-  // Vérification d'unicité de l'email
+  // Vérification d'unicité de l'email : on effectue la requête sans afficher le toast ici
   const handleEmailBlur = (email) => {
     if (!email) return;
+    setIsVerifyingEmail(true);
     axios
       .get(
         `http://localhost:5001/api/responses?email=${email
@@ -122,12 +125,14 @@ const Questionnaire = () => {
         } else {
           setEmailDuplique(false);
         }
+        setIsVerifyingEmail(false);
       })
       .catch((err) => {
         console.error(
           "Erreur lors de la vérification de l'unicité de l'email",
           err
         );
+        setIsVerifyingEmail(false);
       });
   };
 
@@ -202,12 +207,12 @@ const Questionnaire = () => {
     );
   };
 
+  // Bouton "Suivant" : Validation, vérification de l'unicité de l'email et redirection
   const boutonSuivant = async () => {
-    // Si l'email existe (par exemple, la question "3" est de type email)
+    // Bloquer la progression si l'email est dupliqué
     if (reponses["3"]) {
       setIsVerifyingEmail(true);
       try {
-        // On effectue la vérification d'unicité en interrogeant la collection Response
         const response = await axios.get(
           `http://localhost:5001/api/responses?email=${reponses["3"]
             .trim()
@@ -225,13 +230,11 @@ const Questionnaire = () => {
         }
       } catch (error) {
         console.error("Erreur lors de la vérification de l'email", error);
-        toast.error("Erreur lors de la vérification de l'email.");
         setIsVerifyingEmail(false);
         return;
       }
       setIsVerifyingEmail(false);
     }
-
     if (validerSectionActuelle()) {
       const sectionActuel = questions[currentSectionIndex];
       const questionAvecNextStep = sectionActuel.questions.find(
@@ -253,13 +256,14 @@ const Questionnaire = () => {
     }
   };
 
+  // Bouton "Envoyer" : Soumission finale
   const boutonEnvoyer = () => {
     if (validerSectionActuelle()) {
       axios
         .post("http://localhost:5001/api/responses", reponses)
         .then(() => {
           toast.success("Formulaire soumis avec succès !");
-          // Optionnel : réinitialiser l'état ou rediriger l'utilisateur
+          setFormSubmitted(true);
         })
         .catch((err) => {
           console.error("Erreur lors de la soumission :", err);
@@ -268,20 +272,39 @@ const Questionnaire = () => {
     }
   };
 
+  if (formSubmitted) {
+    return (
+      <div className="max-padd-container bg-gray-200 dark:bg-gray-800 rounded-lg shadow-lg p-6 md:w-[600px] h-auto text-center">
+        <h2 className="text-2xl font-bold mb-4">
+          Merci pour votre participation !
+        </h2>
+        <p className="mb-6">
+          Nous apprécions le temps que vous nous avez consacré. Pour toute
+          question ou pour en savoir plus sur nos services, n'hésitez pas à nous
+          contacter ou à visiter la page "À propos".
+        </p>
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={() => navigate("/contact")}
+            className="btn-primary py-2 px-4 text-lg"
+          >
+            Contact
+          </button>
+          <button
+            onClick={() => navigate("/a-propos")}
+            className="btn-secondary py-2 px-4 text-lg"
+          >
+            À propos
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-padd-container bg-gray-200 dark:bg-gray-800 rounded-lg shadow-lg p-6 md:w-[600px] h-auto">
       {affichageSection()}
-      <div className="flex justify-between mt-4">
-        <div className="flex">
-          {currentSectionIndex > 0 && (
-            <button
-              onClick={() => setCurrentSectionIndex(currentSectionIndex - 1)}
-              className="btn-secondary py-2 px-4 text-lg"
-            >
-              <FaArrowLeft />
-            </button>
-          )}
-        </div>
+      <div className="flex justify-end mt-4">
         <div className="flex">
           {currentSectionIndex < questions.length - 1 ? (
             <button

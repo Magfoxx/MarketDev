@@ -6,7 +6,7 @@ const AboutIntro = () => {
       <Title title1="À propos de Market" title2="Dev" titleStyles="h2" />
       <p className="text-secondary dark:text-gray-300 max-w-3xl mx-auto mt-16 leading-relaxed">
         <span className="font-bold text-secondary dark:text-white">
-          Market<span className="text-primary">Dev</span>
+          Market<span className="text-primary">Dev </span>
         </span>
         est une initiative visant à comprendre les besoins des entrepreneurs et
         entreprises en matière de développement web. Mon objectif est d'offrir

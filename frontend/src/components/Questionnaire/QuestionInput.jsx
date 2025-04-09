@@ -8,9 +8,10 @@ const QuestionInput = ({
   erreur,
   onChangement,
   onChangementCheckbox,
-  onEmailBlur,
+  onEmailBlur, // utilisée pour la vérification d'unicité de l'email
   statusColor,
 }) => {
+  // Classes de base pour les inputs et textareas
   const classesInput =
     "w-full mt-3 p-3 text-secondary dark:text-white ring-1 ring-gray-300 dark:ring-gray-600 rounded-lg outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700";
   const classesTextarea =
@@ -18,6 +19,7 @@ const QuestionInput = ({
   const classesDescription =
     "absolute left-0 top-full mt-2 hidden group-hover:block bg-white dark:bg-secondary text-[14px] text-gray-800 dark:text-gray-100 p-2 ring-1 ring-primary rounded-lg shadow-lg z-10";
 
+  // Filtrer les options selon la couleur du statut
   const filtrerOptions = (options) => {
     if (!statusColor) return options;
     return options.filter((option) => {
@@ -42,6 +44,7 @@ const QuestionInput = ({
           )}
         </>
       );
+
     case "email":
       return (
         <>
@@ -62,11 +65,12 @@ const QuestionInput = ({
           )}
         </>
       );
+
     case "radio":
       return (
         <div>
           {filtrerOptions(question.options).map((option) => (
-            <div key={option.value} className="group relative">
+            <div key={option.value} className="group relative mb-2">
               <label className="flex items-center gap-2 text-secondary dark:text-white cursor-pointer">
                 <input
                   type="radio"
@@ -80,6 +84,67 @@ const QuestionInput = ({
               {option.description && (
                 <div className={classesDescription}>{option.description}</div>
               )}
+              {/* Si l'option en question est "autre" et qu'elle est sélectionnée, on affiche le textarea */}
+              {option.value === "autre" && valeur === "autre" && (
+                <textarea
+                  placeholder="Précisez..."
+                  value={valeurComplementaire || ""}
+                  onChange={(e) =>
+                    onChangement(`${question.id}_other`, e.target.value)
+                  }
+                  className={classesTextarea}
+                />
+              )}
+              {/* Pour les options "email" et "telephone", si besoin de champs complémentaires */}
+              {valeur === option.value && option.value === "email" && (
+                <input
+                  type="email"
+                  placeholder="Votre adresse email"
+                  value={
+                    typeof valeurComplementaire === "string"
+                      ? valeurComplementaire
+                      : ""
+                  }
+                  onChange={(e) =>
+                    onChangement(`${question.id}_other`, e.target.value)
+                  }
+                  className={classesInput}
+                />
+              )}
+              {valeur === option.value && option.value === "telephone" && (
+                <input
+                  type="tel"
+                  placeholder="Votre numéro de téléphone"
+                  value={
+                    typeof valeurComplementaire === "string"
+                      ? valeurComplementaire
+                      : ""
+                  }
+                  onChange={(e) =>
+                    onChangement(`${question.id}_other`, e.target.value)
+                  }
+                  className={classesInput}
+                />
+              )}
+              {/* Pour les options nécessitant un champ complémentaire autre que "autre", "email" ou "telephone" */}
+              {valeur === option.value &&
+                option.requiresTextInput &&
+                option.value !== "autre" &&
+                option.value !== "email" &&
+                option.value !== "telephone" && (
+                  <textarea
+                    placeholder="Précisez..."
+                    value={
+                      typeof valeurComplementaire === "string"
+                        ? valeurComplementaire
+                        : ""
+                    }
+                    onChange={(e) =>
+                      onChangement(`${question.id}_other`, e.target.value)
+                    }
+                    className={classesTextarea}
+                  />
+                )}
             </div>
           ))}
           {erreur && (
@@ -87,6 +152,7 @@ const QuestionInput = ({
           )}
         </div>
       );
+
     case "select":
       return (
         <div>
@@ -124,6 +190,7 @@ const QuestionInput = ({
           )}
         </div>
       );
+
     case "multi-select":
       return (
         <div>
@@ -140,7 +207,7 @@ const QuestionInput = ({
                   onChange={() =>
                     onChangementCheckbox(question.id, option.value)
                   }
-                  className="max-w-5 max-h-5 accent-primary mt-1 cursor-pointer"
+                  className="max-w-5 h-5 accent-primary mt-1 cursor-pointer"
                 />
                 <span className="leading-tight">{option.label}</span>
               </label>
@@ -164,6 +231,7 @@ const QuestionInput = ({
           )}
         </div>
       );
+
     default:
       return null;
   }
