@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const ResponseSchema = new mongoose.Schema({
-  email: { type: String, required: true }, // Stocker l'email ici sans contrainte d'unicité
+  email: { type: String, required: true },
   data: { type: mongoose.Schema.Types.Mixed, required: true },
   createdAt: { type: Date, default: Date.now },
 });

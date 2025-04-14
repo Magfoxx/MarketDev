@@ -10,7 +10,7 @@ const AboutSurvey = () => {
           construire une offre adaptée.
           <span className="font-bold text-secondary dark:text-white">
             {" "}
-            Temps estimé : 3 à 5 minutes.
+            Temps estimé : 2 à 5 minutes.
           </span>{" "}
           Vos réponses sont{" "}
           <span className="text-red-500">anonymes et confidentielles</span>.

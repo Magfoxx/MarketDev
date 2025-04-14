@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   try {
     const responsesData = req.body;
-    // Supposons que l'email se trouve à la clé "3"
+    // L'email se trouve à la clé "3"
     const email = responsesData["3"]?.trim().toLowerCase();
     if (!email) {
       return res.status(400).json({ message: "L'email est requis." });

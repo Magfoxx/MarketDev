@@ -1,5 +1,4 @@
-// frontend/src/pages/AdminLogin.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Title from "../components/Title";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -7,48 +6,51 @@ import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 const AdminLogin = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    motDePasse: "",
-  });
+  const [formData, setFormData] = useState({ email: "", motDePasse: "" });
   const navigate = useNavigate();
 
-  // Gestion des changements dans le formulaire
+  useEffect(() => {
+    const checkIfLoggedIn = async () => {
+      const token = localStorage.getItem("adminToken");
+      if (!token) return;
+
+      try {
+        await axios.get("http://localhost:5001/api/admin/verify", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        navigate("/admin/dashboard");
+      } catch {
+        localStorage.removeItem("adminToken");
+      }
+    };
+    checkIfLoggedIn();
+  }, [navigate]);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Gestion de la soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Vérification que tous les champs sont remplis
-    if (Object.values(formData).some((value) => !value.trim())) {
+    if (Object.values(formData).some((v) => !v.trim())) {
       return toast.error("Veuillez remplir tous les champs.");
     }
 
-    // Vérification du format de l'email via regex
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(formData.email.trim())) {
       return toast.error("Veuillez entrer une adresse email valide.");
     }
 
     try {
-      // Appel API pour la connexion admin
-      const response = await axios.post(
-        "http://localhost:5001/api/admin/login",
-        {
-          email: formData.email.trim().toLowerCase(),
-          password: formData.motDePasse,
-        }
-      );
-      // Stocker le token dans le localStorage
+      const response = await axios.post("http://localhost:5001/api/admin/", {
+        email: formData.email.trim().toLowerCase(),
+        password: formData.motDePasse,
+      });
       localStorage.setItem("adminToken", response.data.token);
       toast.success("Connexion réussie !");
-      // Rediriger vers le tableau de bord admin
       navigate("/admin/dashboard");
     } catch (error) {
-      console.error("Erreur lors de la connexion admin :", error);
       toast.error(
         error.response?.data?.message || "Erreur lors de la connexion"
       );
@@ -81,7 +83,7 @@ const AdminLogin = () => {
               placeholder="Votre email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full mt-2 p-3 text-secondary dark:text-white ring-1 ring-gray-300 dark:ring-gray-600 rounded-lg outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700"
+              className="w-full mt-2 p-3 rounded-lg outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-secondary dark:text-white"
               required
             />
           </div>
@@ -99,7 +101,7 @@ const AdminLogin = () => {
               placeholder="Votre mot de passe"
               value={formData.motDePasse}
               onChange={handleChange}
-              className="w-full mt-2 p-3 text-secondary dark:text-white ring-1 ring-gray-300 dark:ring-gray-600 rounded-lg outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700"
+              className="w-full mt-2 p-3 rounded-lg outline-none focus:ring-2 focus:ring-primary bg-white dark:bg-gray-700 text-secondary dark:text-white"
               required
             />
           </div>

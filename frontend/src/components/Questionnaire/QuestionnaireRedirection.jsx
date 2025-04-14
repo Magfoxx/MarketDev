@@ -23,7 +23,7 @@ const gererRedirection = (
   // - Si le statut est "particulier", on redirige vers question.nextStep.non.particulier.
   // - Sinon, on redirige vers question.nextStep.non.default.
   if (question.id === "6") {
-    console.log("Redirection question 6, valeur:", valeur);
+    // console.log("Redirection question 6, valeur:", valeur);
     if (valeur === "oui") {
       redirection = question.nextStep["oui"];
     } else if (valeur === "non") {

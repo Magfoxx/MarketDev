@@ -120,7 +120,7 @@ p {
 
 /* LoaderSpinner*/
 .loader {
-  @apply flex justify-items-center justify-center m-auto overflow-hidden text-center relative text-[32px] leading-[86px] font-sans text-secondary dark:text-white w-80;
+  @apply flex justify-items-center justify-center m-auto overflow-hidden text-center relative text-[25px] leading-[86px] font-sans text-secondary dark:text-white w-80;
 }
 
 /* Styles pour les pseudo-éléments ::before et ::after */

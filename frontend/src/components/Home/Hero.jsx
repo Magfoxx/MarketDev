@@ -59,7 +59,7 @@ const Hero = () => {
       {/* Infos supplémentaires */}
       <div className="text-center max-w-3xl">
         <p className="p text-gray-500 dark:text-gray-400 font-medium">
-          🕒 Temps estimé : <span className="font-bold">3 à 5 minutes</span> •
+          🕒 Temps estimé : <span className="font-bold">2 à 5 minutes</span> •
           Vos réponses sont{" "}
           <span className="text-red-500 dark:text-red-400">
             confidentielles et anonymes

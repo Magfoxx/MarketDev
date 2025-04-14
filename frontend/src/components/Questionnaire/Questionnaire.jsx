@@ -275,15 +275,13 @@ const Questionnaire = () => {
   if (formSubmitted) {
     return (
       <div className="max-padd-container bg-gray-200 dark:bg-gray-800 rounded-lg shadow-lg p-6 md:w-[600px] h-auto text-center">
-        <h2 className="text-2xl font-bold mb-4">
-          Merci pour votre participation !
-        </h2>
+        <h3 className="h3">Merci pour votre participation !</h3>
         <p className="mb-6">
           Nous apprécions le temps que vous nous avez consacré. Pour toute
           question ou pour en savoir plus sur nos services, n'hésitez pas à nous
           contacter ou à visiter la page "À propos".
         </p>
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-between px-5 md:px-25 ">
           <button
             onClick={() => navigate("/contact")}
             className="btn-primary py-2 px-4 text-lg"
@@ -292,7 +290,7 @@ const Questionnaire = () => {
           </button>
           <button
             onClick={() => navigate("/a-propos")}
-            className="btn-secondary py-2 px-4 text-lg"
+            className="btn-primary py-2 px-4 text-lg"
           >
             À propos
           </button>
