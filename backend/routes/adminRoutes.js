@@ -3,13 +3,16 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Admin from "../models/Admin.js";
 import { verifyAdminToken } from "../middleware/authMiddleware.js";
-
+import { getDashboardStats } from "../controllers/statsController.js";
 const router = express.Router();
 
 // Vérification du token JWT
 router.get("/verify", verifyAdminToken, (req, res) => {
   res.status(200).json({ message: "Token valide", admin: req.admin });
 });
+
+// Endpoint pour récupérer les statistiques (par exemple, pour le Dashboard)
+router.get("/stats", verifyAdminToken, getDashboardStats);
 
 // Connexion de l’admin
 router.post("/", async (req, res) => {
