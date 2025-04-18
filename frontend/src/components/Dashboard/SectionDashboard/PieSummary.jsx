@@ -8,7 +8,14 @@ import {
   Legend,
 } from "recharts";
 
-const COLORS = ["#EF4444", "#F59E0B", "#22C55E"]; // oui/partiel/non
+const COLORS = [
+  "#f87171",
+  "#facc15",
+  "#4ade80",
+  "#fb923c",
+  "#38bdf8",
+  "#a78bfa",
+];
 
 const PieSummary = ({ data, title }) => {
   const entries = Object.entries(data).map(([name, value]) => ({
@@ -26,7 +33,7 @@ const PieSummary = ({ data, title }) => {
             nameKey="name"
             innerRadius={40}
             outerRadius={60}
-            // label
+            label
           >
             {entries.map((_, idx) => (
               <Cell key={idx} fill={COLORS[idx % COLORS.length]} />

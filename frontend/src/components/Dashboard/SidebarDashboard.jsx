@@ -7,7 +7,6 @@ import {
   MdBarChart,
   MdPieChart,
   MdPeople,
-  MdSettings,
   MdMenu,
   MdChevronLeft,
 } from "react-icons/md";
@@ -36,7 +35,7 @@ const SidebarDashboard = ({ onChangeActive }) => {
     <>
       {/* Container de la sidebar */}
       <div
-        className={`fixed top-0 left-0 h-[100vh] transition-all duration-300 ease-in-out z-40 text-secondary dark:text-white
+        className={`hidden md:fixed md:top-0 md:left-0 md:h-[100vh] xl:block transition-all duration-300 ease-in-out z-40 text-secondary dark:text-white
           ${isOpen ? "w-70" : "w-[80px]"}`}
       >
         {/* Bouton de toggle placé à l'intérieur de la sidebar en haut à droite */}
@@ -59,6 +58,7 @@ const SidebarDashboard = ({ onChangeActive }) => {
                   }`}
                 >
                   <h2>
+                    {/* Logo pour le mode clair */}
                     <img
                       src={logoLight}
                       alt="Logo MarketDev"
@@ -145,30 +145,54 @@ const SidebarDashboard = ({ onChangeActive }) => {
               </ul>
             </nav>
           </div>
-          <div>
-            <nav>
-              <ul>
-                <li
-                  onClick={() => handleClick("parametres")}
-                  className={`flex items-center p-2 rounded-md transition-colors hover:!bg-gray-300 dark:hover:bg-gray-700 cursor-pointer ${
-                    activeItem === "parametres"
-                      ? "bg-gray-400 font-semibold"
-                      : ""
-                  }`}
-                >
-                  <MdSettings size={24} />
-                  <span
-                    className={`${textTransitionClasses} ${
-                      isOpen ? "max-w-[100px] opacity-100" : "max-w-0 opacity-0"
-                    }`}
-                  >
-                    Paramètres
-                  </span>
-                </li>
-              </ul>
-            </nav>
-          </div>
         </div>
+      </div>
+      {/* Mobile Navigation Bar */}
+      <div className="flex xl:hidden fixed top-0 left-0 w-full flex-row items-center justify-between px-4 py-2 bg-gray-300 dark:bg-gray-800 text-white z-50 ring-1 ring-secondary dark:ring-white shadow-xl shadow-white dark:shadow-secondary">
+        <div className="flex flex-row items-center">
+          <h2>
+            {/* Logo pour le mode clair */}
+            <img
+              src={logoLight}
+              alt="Logo MarketDev"
+              className="block dark:hidden h-8 xl:h-10 md:h-9"
+            />
+            {/* Logo pour le mode sombre */}
+            <img
+              src={logoDark}
+              alt="Logo MarketDev"
+              className="hidden dark:block h-8 xl:h-10 md:h-9"
+            />
+          </h2>
+        </div>
+        <nav>
+          <ul className="flex flex-row space-x-7">
+            <li
+              onClick={() => handleClick("dashboard")}
+              className="cursor-pointer text-secondary dark:text-white"
+            >
+              <MdSpaceDashboard size={24} />
+            </li>
+            <li
+              onClick={() => handleClick("statistiques")}
+              className="cursor-pointer text-secondary dark:text-white"
+            >
+              <MdBarChart size={24} />
+            </li>
+            <li
+              onClick={() => handleClick("graphiques")}
+              className="cursor-pointer text-secondary dark:text-white"
+            >
+              <MdPieChart size={24} />
+            </li>
+            <li
+              onClick={() => handleClick("utilisateurs")}
+              className="cursor-pointer text-secondary dark:text-white"
+            >
+              <MdPeople size={24} />
+            </li>
+          </ul>
+        </nav>
       </div>
     </>
   );
