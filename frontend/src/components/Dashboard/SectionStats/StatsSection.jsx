@@ -1,41 +1,10 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import MultiSelectStats from "./MultiSelectStats";
 import GroupedBarChart from "./GroupedBarChart";
 import UserModal from "./UserModal";
 
-const StatsSection = () => {
-  const [loading, setLoading] = useState(true);
-  const [statsDetails, setStatsDetails] = useState(null);
+const StatsSection = ({ statsDetails }) => {
   const [selectedUser, setSelectedUser] = useState(null);
-
-  useEffect(() => {
-    const fetchStatsDetails = async () => {
-      try {
-        const token = localStorage.getItem("adminToken");
-        const response = await axios.get(
-          "http://localhost:5001/api/admin/stats-details",
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-        setStatsDetails(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error(
-          "Erreur lors du chargement des statistiques détaillées:",
-          error
-        );
-        setLoading(false);
-      }
-    };
-
-    fetchStatsDetails();
-  }, []);
-
-  if (loading || !statsDetails) {
-    return <p>Chargement des statistiques détaillées...</p>;
-  }
 
   return (
     <div className="max-padd-container-dashboard">
@@ -60,7 +29,7 @@ const StatsSection = () => {
               "#f59e0b",
               "#ef4444",
               "#6366f1",
-              "#14b8a6",
+              "#ec4899",
             ]}
           />
         </div>

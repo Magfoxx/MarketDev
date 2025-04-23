@@ -152,19 +152,27 @@ const SidebarDashboard = ({ onChangeActive }) => {
           <ul className="flex flex-row space-x-7">
             <li
               onClick={() => handleClick("dashboard")}
-              className="cursor-pointer text-secondary dark:text-white"
+              className={`flex items-center p-2 rounded-md transition-colors hover:!bg-red-200 dark:hover:bg-gray-700 cursor-pointer ${
+                activeItem === "dashboard" ? "bg-red-300 font-semibold" : ""
+              }`}
             >
               <MdSpaceDashboard size={24} />
             </li>
             <li
               onClick={() => handleClick("statistiques")}
-              className="cursor-pointer text-secondary dark:text-white"
+              className={`flex items-center p-2 rounded-md transition-colors hover:!bg-blue-200 dark:hover:bg-gray-700 cursor-pointer ${
+                activeItem === "statistiques" ? "bg-blue-300 font-semibold" : ""
+              }`}
             >
               <MdBarChart size={24} />
             </li>
             <li
               onClick={() => handleClick("utilisateurs")}
-              className="cursor-pointer text-secondary dark:text-white"
+              className={`flex items-center p-2 rounded-md transition-colors hover:!bg-green-200 dark:hover:bg-gray-700 cursor-pointer ${
+                activeItem === "utilisateurs"
+                  ? "bg-green-300 font-semibold"
+                  : ""
+              }`}
             >
               <MdPeople size={24} />
             </li>

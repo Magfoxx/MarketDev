@@ -12,17 +12,23 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState(null);
+  const [statsDetails, setStatsDetails] = useState(null);
   const [activeSection, setActiveSection] = useState("dashboard");
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
         const token = localStorage.getItem("adminToken");
-        const response = await axios.get(
-          "http://localhost:5001/api/admin/stats",
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-        setStats(response.data);
+        const [resStats, resDetails] = await Promise.all([
+          axios.get("http://localhost:5001/api/admin/stats", {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+          axios.get("http://localhost:5001/api/admin/stats-details", {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+        ]);
+        setStats(resStats.data);
+        setStatsDetails(resDetails.data);
         setLoading(false);
       } catch (error) {
         console.error("Erreur lors du chargement des statistiques:", error);
@@ -30,7 +36,7 @@ const AdminDashboard = () => {
       }
     };
     fetchStats();
-  }, [navigate]);
+  }, []);
 
   if (loading) {
     return (
@@ -45,7 +51,7 @@ const AdminDashboard = () => {
       case "dashboard":
         return <DashboardSection stats={stats} />;
       case "statistiques":
-        return <StatsSection stats={stats} />;
+        return <StatsSection statsDetails={statsDetails} />;
       case "graphiques":
         return <GraphsSection stats={stats} />;
       case "utilisateurs":
