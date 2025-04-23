@@ -109,23 +109,6 @@ const SidebarDashboard = ({ onChangeActive }) => {
                   </span>
                 </li>
                 <li
-                  onClick={() => handleClick("graphiques")}
-                  className={`flex items-center p-2 rounded-md transition-colors hover:!bg-orange-200 dark:hover:bg-gray-700 cursor-pointer ${
-                    activeItem === "graphiques"
-                      ? "bg-orange-300 font-semibold"
-                      : ""
-                  }`}
-                >
-                  <MdPieChart size={24} />
-                  <span
-                    className={`${textTransitionClasses} ${
-                      isOpen ? "max-w-[180px] opacity-100" : "max-w-0 opacity-0"
-                    }`}
-                  >
-                    Graphiques & analyses
-                  </span>
-                </li>
-                <li
                   onClick={() => handleClick("utilisateurs")}
                   className={`flex items-center p-2 rounded-md transition-colors hover:!bg-green-200 dark:hover:bg-gray-700 cursor-pointer ${
                     activeItem === "utilisateurs"
@@ -178,12 +161,6 @@ const SidebarDashboard = ({ onChangeActive }) => {
               className="cursor-pointer text-secondary dark:text-white"
             >
               <MdBarChart size={24} />
-            </li>
-            <li
-              onClick={() => handleClick("graphiques")}
-              className="cursor-pointer text-secondary dark:text-white"
-            >
-              <MdPieChart size={24} />
             </li>
             <li
               onClick={() => handleClick("utilisateurs")}

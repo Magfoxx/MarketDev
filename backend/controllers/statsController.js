@@ -2,15 +2,12 @@ import ResponseModel from "../models/Response.js";
 import analysisDashboard from "../services/analysisDashboard.js";
 import analysisStats from "../services/analysisStats.js";
 
+
 export const getDashboardStats = async (req, res) => {
   try {
     // Récupérer toutes les réponses de la collection
     const responses = await ResponseModel.find();
-
-    // Utiliser le service pour analyser les réponses
     const stats = analysisDashboard.analyzeResponses(responses);
-
-    // Retourner les statistiques sous forme de JSON
     res.status(200).json(stats);
   } catch (error) {
     console.error("Erreur dans getDashboardStats:", error);

@@ -11,7 +11,7 @@ import {
 
 const GroupedBarChart = ({ data, xKey, seriesKeys, colors, title }) => {
   return (
-    <div className="max-padd-container-dashboardbg-gray-300 dark:bg-gray-800 h-full w-full rounded-xl text-secondary dark:text-white p-4">
+    <div className="max-padd-container-dashboard bg-gray-300 dark:bg-gray-800 h-full w-full rounded-xl text-secondary dark:text-white p-4 shadow-xl">
       <h4 className="h4">{title}</h4>
       <ResponsiveContainer width="100%" height={250}>
         <BarChart data={data}>

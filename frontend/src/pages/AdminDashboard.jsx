@@ -6,7 +6,6 @@ import Title from "../components/Title";
 
 import DashboardSection from "../components/Dashboard/SectionDashboard/DashboardSection";
 import StatsSection from "../components/Dashboard/SectionStats/StatsSection";
-import GraphsSection from "../components/Dashboard/SectionGraphs/GraphsSection";
 import UsersSection from "../components/Dashboard/SectionUsers/UserSection";
 
 const AdminDashboard = () => {

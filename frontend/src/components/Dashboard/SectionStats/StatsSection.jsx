@@ -113,7 +113,7 @@ const StatsSection = () => {
           />
         </div>
         <div className="xl:col-span-1">
-          <div className="bg-gray-300 dark:bg-gray-800 p-4 rounded-xl shadow-xl text-secondary dark:text-white">
+          <div className="bg-gray-300 dark:bg-gray-800 p-4 rounded-xl shadow-xl text-secondary dark:text-white h-full">
             <h4 className="h4 mb-4 text-center">
               3 dernières demandes de contact
             </h4>
