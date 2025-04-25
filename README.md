@@ -1,88 +1,82 @@
-# Projet d'Étude de Marché - Développement Web
+# 🧠 MarketDev – Plateforme d'Étude de Marché pour le Développement Web
 
-## 📌 Introduction
+## 📋 Objectif du projet
 
-Ce projet est un **formulaire d'étude de marché** visant à collecter des données sur les besoins en développement web des entreprises et entrepreneurs. Il permet de stocker et analyser les réponses des participants afin d'affiner l'offre de services.
+MarketDev est un site complet de type dashboard permettant de collecter, centraliser, analyser et visualiser les besoins en développement web exprimés par des entreprises, auto-entrepreneurs et particuliers via un questionnaire en ligne.
 
-Le projet repose sur une stack **MERN (MongoDB, Express, React, Node.js)** et utilise **Vite** pour un développement frontend rapide.
-
----
-
-## 🚀 Fonctionnalités
-
-- ✅ Formulaire d'étude de marché avec questions ciblées
-- ✅ Stockage des réponses en **MongoDB**
-- ✅ API Express REST pour gérer les réponses
-- ✅ Interface **React + Vite** pour une UX fluide
-- ✅ Possibilité d'être recontacté
-- 🔄 Tableau de bord d'analyse des réponses (**en cours**)
+Le but principal est d’identifier les besoins clients (type de site, budget, fonctionnalités), les profils d’utilisateurs, et les potentiels prospects à recontacter, afin d’adapter l’offre commerciale d’un service de création web.
 
 ---
 
-## 🛠️ Technologies Utilisées
+## 🛠 Stack & Technologies
 
-- **Frontend** : React (Vite), TailwindCSS
-- **Backend** : Node.js, Express
-- **Base de données** : MongoDB avec Mongoose
-- **Autres** : CORS, dotenv...
-
----
-
-## 📂 Structure du Projet
-
-```
-.
-├── backend  # Serveur Express + MongoDB
-│   ├── server.js
-│   ├── models/Survey.js
-│   ├── routes/surveyRoutes.js
-│   ├── .env
-│   ├── package.json
-│   ├── README.md
-├── frontend  # Interface React + Vite
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   ├── index.css
-│   ├── package.json
-│   ├── tailwind.config.js
-│   ├── README.md
-└── README.md  # Documentation principale
-```
+- **Frontend** : React + Vite, TailwindCSS, Shadcn/ui
+- **Graphiques** : Recharts
+- **Backend** : Node.js + Express
+- **Base de données** : MongoDB (Mongoose)
+- **Export** : CSV/Excel ( à implémenter plus tard )
+- **Outils** : Axios, dotenv, cors
 
 ---
 
-## 📌 Installation et Lancement
+## 🚀 Fonctionnalités complètes
 
-### 1️⃣ Prérequis
+### ✅ Collecte de données
 
-- **Node.js** (16+)
-- **MongoDB** (local ou MongoDB Atlas)
-- **Git** (optionnel)
+- Formulaire d’étude de marché complet (plus de 25 questions)
+- Enregistrement en base MongoDB
+- Gestion des autres champs (`_other`) avec valeur personnalisée
+- Choix d’être recontacté
 
-### 2️⃣ Installation du Backend
+### 📊 Dashboard d’analyse
+
+- **Vue d’ensemble**
+  - Nombre total de réponses
+  - Statistiques par statut, secteur, budget
+  - Taux de conversion contact / total
+
+- **Graphiques**
+  - Répartition des budgets par secteur
+  - Statut × Secteur / Statut × Budget
+  - Analyse des fonctionnalités marketing choisies
+
+- **Détails utilisateur**
+  - Liste des participants avec nom, statut, secteur, budget
+  - Tri, recherche, filtres dynamiques
+  - Modal affichant toutes les réponses d’un utilisateur
+  - Pagination (5 / 10 / 20 / 30 / 50 par page)
+  - Export CSV/Excel des données filtrées (à faire plus tard)
+
+---
+
+## 🔗 API disponible
+
+| Route                                | Méthode | Description |
+|-------------------------------------|---------|-------------|
+| `/api/survey`                       | POST    | Enregistrer une réponse |
+| `/api/survey`                       | GET     | Récupérer toutes les réponses |
+| `/api/admin/stats`                  | GET     | Statistiques globales |
+| `/api/admin/stats/details`         | GET     | Détails analytiques des réponses |
+| `/api/admin/users/details`         | GET     | Détail structuré de tous les utilisateurs |
+
+---
+
+## 🧪 Lancement en local
+
+### ⚙️ Backend
 
 ```bash
 cd backend
 npm install
-```
-
-Créez un fichier **.env** dans `/backend` avec :
-
-```bash
-MONGO_URI="mongodb+srv://<utilisateur>:<mot_de_passe>@cluster.mongodb.net/nom_de_ta_db"
+touch .env
+# Renseigner le .env :
+MONGO_URI="mongodb+srv://<utilisateur>:<mot_de_passe>@cluster.mongodb.net/marketdev"
 PORT=5000
+
+npm run dev
 ```
 
-Démarrer le serveur :
-
-```bash
-nodemon server.js
-```
-
-### 3️⃣ Installation du Frontend
+### 💻 Frontend
 
 ```bash
 cd frontend
@@ -90,31 +84,20 @@ npm install
 npm run dev
 ```
 
-Le frontend est accessible sur **http://localhost:5173** et le backend sur **http://localhost:5000**.
+Visiter [http://localhost:5173](http://localhost:5173)
 
 ---
 
-## 📌 API Endpoints
+## ✨ Prochaines idées
 
-| Route | Méthode | Description |
-|-------|---------|-------------|
-| `/api/survey` | **POST** | Enregistrer une réponse |
-| `/api/survey` | **GET** | Récupérer toutes les réponses |
-
----
-
-## 📌 Améliorations Prévues
-
-- [ ] Interface d'analyse des réponses (graphiques, tendances)
-- [ ] Export des résultats en CSV / Excel
-- [ ] Notifications pour les réponses importantes
+- Ajout d’un système d’authentification (admin)
+- Ajout de tags auto pour segmentation des profils
+- Système d’email automatique aux contacts “à recontacter”
 
 ---
 
-## 📌 Auteur
+## 👨‍💻 Auteur
 
-- **Auteur :** _Magfoxx_  
-- **Date :** _Février 2025_
-
-📧 Contactez-moi pour toute question ou suggestion !
-
+**Magfoxx**  
+Développeur fullstack MERN  
+📧 Contact : _hamcha.martial@gmail.com_
