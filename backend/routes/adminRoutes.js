@@ -6,6 +6,7 @@ import { verifyAdminToken } from "../middleware/authMiddleware.js";
 import {
   getDashboardStats,
   getStatsDetails,
+  getUserDetails,
 } from "../controllers/statsController.js";
 
 const router = express.Router();
@@ -19,7 +20,10 @@ router.get("/verify", verifyAdminToken, (req, res) => {
 router.get("/stats", verifyAdminToken, getDashboardStats);
 
 // Statistiques détaillées pour la section Statistiques
-router.get("/stats-details", verifyAdminToken, getStatsDetails);
+router.get("/stats/details", verifyAdminToken, getStatsDetails);
+
+// Détails des utilisateurs pour la section Utilisateurs
+router.get("/users/details", verifyAdminToken, getUserDetails);
 
 // Connexion admin (authentification)
 router.post("/", async (req, res) => {
