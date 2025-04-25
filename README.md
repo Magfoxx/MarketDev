@@ -1,82 +1,98 @@
-# 🧠 MarketDev – Plateforme d'Étude de Marché pour le Développement Web
+# Projet d'Étude de Marché - Développement Web
 
-## 📋 Objectif du projet
+## 📌 Introduction
 
-MarketDev est un site complet de type dashboard permettant de collecter, centraliser, analyser et visualiser les besoins en développement web exprimés par des entreprises, auto-entrepreneurs et particuliers via un questionnaire en ligne.
+Ce projet est un **formulaire d'étude de marché** visant à collecter des données sur les besoins en développement web des entreprises et entrepreneurs. Il permet de stocker et analyser les réponses des participants afin d'affiner l'offre de services.
 
-Le but principal est d’identifier les besoins clients (type de site, budget, fonctionnalités), les profils d’utilisateurs, et les potentiels prospects à recontacter, afin d’adapter l’offre commerciale d’un service de création web.
-
----
-
-## 🛠 Stack & Technologies
-
-- **Frontend** : React + Vite, TailwindCSS, Shadcn/ui
-- **Graphiques** : Recharts
-- **Backend** : Node.js + Express
-- **Base de données** : MongoDB (Mongoose)
-- **Export** : CSV/Excel ( à implémenter plus tard )
-- **Outils** : Axios, dotenv, cors
+Le projet repose sur une stack **MERN (MongoDB, Express, React, Node.js)** et utilise **Vite** pour un développement frontend rapide.
 
 ---
 
-## 🚀 Fonctionnalités complètes
+## 🚀 Fonctionnalités
 
-### ✅ Collecte de données
-
-- Formulaire d’étude de marché complet (plus de 25 questions)
-- Enregistrement en base MongoDB
-- Gestion des autres champs (`_other`) avec valeur personnalisée
-- Choix d’être recontacté
-
-### 📊 Dashboard d’analyse
-
-- **Vue d’ensemble**
-  - Nombre total de réponses
-  - Statistiques par statut, secteur, budget
-  - Taux de conversion contact / total
-
-- **Graphiques**
-  - Répartition des budgets par secteur
-  - Statut × Secteur / Statut × Budget
-  - Analyse des fonctionnalités marketing choisies
-
-- **Détails utilisateur**
-  - Liste des participants avec nom, statut, secteur, budget
-  - Tri, recherche, filtres dynamiques
-  - Modal affichant toutes les réponses d’un utilisateur
-  - Pagination (5 / 10 / 20 / 30 / 50 par page)
-  - Export CSV/Excel des données filtrées (à faire plus tard)
+- ✅ Formulaire d'étude de marché avec questions ciblées
+- ✅ Stockage des réponses en **MongoDB**
+- ✅ API Express REST pour gérer les réponses
+- ✅ Interface **React + Vite** pour une UX fluide
+- ✅ Possibilité d'être recontacté
+- ✅ Tableau de bord d'analyse des réponses
+- ✅ Authentification admin sécurisée (email + mot de passe)
+- ✅ Formulaire de contact avec envoi d'email via EmailJS
 
 ---
 
-## 🔗 API disponible
+## 🛠️ Technologies Utilisées
 
-| Route                                | Méthode | Description |
-|-------------------------------------|---------|-------------|
-| `/api/survey`                       | POST    | Enregistrer une réponse |
-| `/api/survey`                       | GET     | Récupérer toutes les réponses |
-| `/api/admin/stats`                  | GET     | Statistiques globales |
-| `/api/admin/stats/details`         | GET     | Détails analytiques des réponses |
-| `/api/admin/users/details`         | GET     | Détail structuré de tous les utilisateurs |
+- **Frontend** : React (Vite), TailwindCSS
+- **Backend** : Node.js, Express
+- **Base de données** : MongoDB avec Mongoose
+- **Autres** : CORS, dotenv...
+- **Email** : EmailJS (pour le formulaire de contact)
 
 ---
 
-## 🧪 Lancement en local
+## 📂 Structure du Projet
 
-### ⚙️ Backend
+```
+.
+├── backend  # Serveur Express + MongoDB
+│   ├── server.js
+│   ├── models/Survey.js
+│   ├── routes/surveyRoutes.js
+│   ├── .env
+│   ├── package.json
+│   ├── README.md
+├── frontend  # Interface React + Vite
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   ├── index.css
+│   ├── package.json
+│   ├── tailwind.config.js
+│   ├── README.md
+└── README.md  # Documentation principale
+```
+
+---
+
+## 📌 Installation et Lancement
+
+### 1️⃣ Prérequis
+
+- **Node.js** (16+)
+- **MongoDB** (local ou MongoDB Atlas)
+- **Git** (optionnel)
+
+### 2️⃣ Installation du Backend
 
 ```bash
 cd backend
 npm install
-touch .env
-# Renseigner le .env :
-MONGO_URI="mongodb+srv://<utilisateur>:<mot_de_passe>@cluster.mongodb.net/marketdev"
-PORT=5000
-
-npm run dev
 ```
 
-### 💻 Frontend
+Créez un fichier **.env** dans `/backend` avec :
+
+```bash
+MONGO_URI="mongodb+srv://<utilisateur>:<mot_de_passe>@cluster.mongodb.net/nom_de_ta_db"
+PORT=5001
+```
+
+Le système d’authentification nécessite la présence d’un compte administrateur pré-enregistré dans la base MongoDB (email + mot de passe hashé).
+Pour cela, utilisez le fichier seedAdmin.js situé dans backend/scripts/ en Démarrant le serveur :
+
+```bash
+nodemon server.js
+```
+
+Puis en exécutant la commande suivante depuis le terminal :
+```bash
+node backend/scripts/seedAdmin.js
+```
+
+
+### 3️⃣ Installation du Frontend
 
 ```bash
 cd frontend
@@ -84,20 +100,51 @@ npm install
 npm run dev
 ```
 
-Visiter [http://localhost:5173](http://localhost:5173)
+Le frontend est accessible sur **http://localhost:5173** et le backend sur **http://localhost:5001**.
+
+### 📬 Configuration EmailJS
+
+Le projet utilise [EmailJS](https://www.emailjs.com/) pour permettre l'envoi d'email depuis le formulaire de contact (frontend).
+
+1. Créez un compte sur [EmailJS](https://www.emailjs.com/)
+2. Configurez un service, un template, et récupérez votre `userID`, `serviceID` et `templateID`
+3. Dans le frontend, créez un fichier `.env` et ajoutez :
+
+```bash
+VITE_EMAILJS_USER_ID=your_user_id
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+```
+
+⚠️ Ces variables sont utilisées dans le formulaire de contact pour envoyer les mails vers votre adresse directement via EmailJS.
 
 ---
 
-## ✨ Prochaines idées
+## 📌 API Endpoints
 
-- Ajout d’un système d’authentification (admin)
-- Ajout de tags auto pour segmentation des profils
-- Système d’email automatique aux contacts “à recontacter”
+| Route | Méthode | Description |
+|-------|---------|-------------|
+| `/api/survey` | **POST** | Enregistrer une réponse |
+| `/api/survey` | **GET** | Récupérer toutes les réponses |
+
+### 🔐 Authentification Admin
+
+| Route              | Méthode | Description                            |
+|--------------------|---------|----------------------------------------|
+| `/api/auth/login`  | **POST** | Connexion de l'admin avec email/mot de passe |
 
 ---
 
-## 👨‍💻 Auteur
+## 📌 Améliorations Prévues
 
-**Magfoxx**  
-Développeur fullstack MERN  
-📧 Contact : _hamcha.martial@gmail.com_
+- [ ] Export des résultats en CSV / Excel
+- [ ] Notifications pour les réponses importantes
+
+---
+
+## 📌 Auteur
+
+- **Auteur :** _Magfoxx_  
+- **Date :** _Février 2025_
+
+📧 Contactez-moi pour toute question ou suggestion !

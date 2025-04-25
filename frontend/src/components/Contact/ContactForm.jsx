@@ -2,6 +2,7 @@ import { useState } from "react";
 import Title from "../Title";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import emailjs from "@emailjs/browser";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -30,9 +31,20 @@ const ContactForm = () => {
       return toast.error("Veuillez entrer une adresse email valide.");
     }
 
-    // Si tout est bon, succès
-    toast.success("Votre message a bien été envoyé !");
-    setFormData({ nom: "", prenom: "", email: "", message: "" });
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    emailjs
+      .send(serviceID, templateID, formData, publicKey)
+      .then(() => {
+        toast.success("Votre message a bien été envoyé !");
+        setFormData({ nom: "", prenom: "", email: "", message: "" });
+      })
+      .catch((error) => {
+        console.error("Erreur EmailJS:", error);
+        toast.error("Une erreur est survenue. Veuillez réessayer.");
+      });
   };
 
   return (
