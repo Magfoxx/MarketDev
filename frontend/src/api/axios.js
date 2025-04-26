@@ -1,7 +1,10 @@
-import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_URL;
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5001/api",
+if (!API_URL) {
+  throw new Error("VITE_API_URL est manquant. Vérifiez votre .env.");
+}
+
+export const axiosInstance = axios.create({
+  baseURL: API_URL,
+  withCredentials: true,
 });
-
-export default api;
