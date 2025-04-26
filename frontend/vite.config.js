@@ -8,5 +8,14 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
-  server: { port: 5173 }
+  server: {
+    port: 5173,
+    proxy: {
+      '/api': {
+        target: 'https://marketdev-backend.onrender.com',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
+  }
 })

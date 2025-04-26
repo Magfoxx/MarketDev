@@ -21,7 +21,7 @@ app.use("/api/questions", questionRoutes);
 app.use("/api/responses", responseRoutes);
 app.use("/api/admin", adminRoutes);
 
-app.get("/santé", (req, res) => {
+app.get("/healthz", (req, res) => {
   res.status(200).send("OK");
 });
 
