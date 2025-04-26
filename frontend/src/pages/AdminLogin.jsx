@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Title from "../components/Title";
 import { toast } from "react-toastify";
-import axios from "axios";
+import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -15,7 +15,7 @@ const AdminLogin = () => {
       if (!token) return;
 
       try {
-        await axios.get("http://localhost:5001/api/admin/verify", {
+        await api.get("/api/admin/verify", {
           headers: { Authorization: `Bearer ${token}` },
         });
         navigate("/admin/dashboard");
@@ -43,7 +43,7 @@ const AdminLogin = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5001/api/admin/", {
+      const response = await api.post("/api/admin/", {
         email: formData.email.trim().toLowerCase(),
         password: formData.motDePasse,
       });

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import api from "../../api/axios";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import QuestionInput from "./QuestionInput";
@@ -22,8 +22,8 @@ const Questionnaire = () => {
   const emailTimeoutRef = useRef(null);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5001/api/questions")
+    api
+      .get("/questions")
       .then((response) => {
         setQuestions(response.data);
         setChargement(false);
@@ -113,9 +113,9 @@ const Questionnaire = () => {
   const handleEmailBlur = (email) => {
     if (!email) return;
     setIsVerifyingEmail(true);
-    axios
+    api
       .get(
-        `http://localhost:5001/api/responses?email=${email
+        `/responses?email=${email
           .trim()
           .toLowerCase()}`
       )
@@ -213,8 +213,8 @@ const Questionnaire = () => {
     if (reponses["3"]) {
       setIsVerifyingEmail(true);
       try {
-        const response = await axios.get(
-          `http://localhost:5001/api/responses?email=${reponses["3"]
+        const response = await api.get(
+          `/responses?email=${reponses["3"]
             .trim()
             .toLowerCase()}`
         );
@@ -259,8 +259,8 @@ const Questionnaire = () => {
   // Bouton "Envoyer" : Soumission finale
   const boutonEnvoyer = () => {
     if (validerSectionActuelle()) {
-      axios
-        .post("http://localhost:5001/api/responses", reponses)
+      api
+        .post("/responses", reponses)
         .then(() => {
           toast.success("Formulaire soumis avec succès !");
           setFormSubmitted(true);

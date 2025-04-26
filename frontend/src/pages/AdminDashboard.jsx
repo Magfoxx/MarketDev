@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Dashboard/SidebarDashboard";
 import Title from "../components/Title";
@@ -13,7 +13,7 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState(null);
   const [statsDetails, setStatsDetails] = useState(null);
-  const [statsUsers, setStatsUsers] = useState(null)
+  const [statsUsers, setStatsUsers] = useState(null);
   const [activeSection, setActiveSection] = useState("dashboard");
 
   useEffect(() => {
@@ -21,13 +21,13 @@ const AdminDashboard = () => {
       try {
         const token = localStorage.getItem("adminToken");
         const [resStats, resDetails, resUsers] = await Promise.all([
-          axios.get("http://localhost:5001/api/admin/stats", {
+          api.get("/api/admin/stats", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("http://localhost:5001/api/admin/stats/details", {
+          api.get("/api/admin/stats/details", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("http://localhost:5001/api/admin/users/details", {
+          api.get("/api/admin/users/details", {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
