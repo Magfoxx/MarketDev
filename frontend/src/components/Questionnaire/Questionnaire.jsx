@@ -179,7 +179,7 @@ const Questionnaire = () => {
           </p>
         </div>
         <div className="my-7">
-          {sectionActuel.questions.map(
+          {Array.isArray(sectionActuel.questions) && sectionActuel.questions.map(
             (question) =>
               doitAfficherQuestion(question) && (
                 <div key={question.id}>
