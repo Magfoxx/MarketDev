@@ -71,9 +71,9 @@ export default {
     const contactDetails = responses
       .filter((resp) => resp.data["24"] === "oui")
       .map((resp) => ({
-        nom: resp.data["1"],
-        prenom: resp.data["2"],
-        email: resp.data["3"],
+        nom: resp.data["2"],
+        prenom: resp.data["3"],
+        email: resp.data["1"],
         statut: resp.data["4"],
       }));
 

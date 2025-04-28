@@ -114,11 +114,7 @@ const Questionnaire = () => {
     if (!email) return;
     setIsVerifyingEmail(true);
     api
-      .get(
-        `/responses?email=${email
-          .trim()
-          .toLowerCase()}`
-      )
+      .get(`/responses?email=${email.trim().toLowerCase()}`)
       .then((response) => {
         if (response.data && response.data.length > 0) {
           setEmailDuplique(true);
@@ -179,29 +175,30 @@ const Questionnaire = () => {
           </p>
         </div>
         <div className="my-7">
-          {Array.isArray(sectionActuel.questions) && sectionActuel.questions.map(
-            (question) =>
-              doitAfficherQuestion(question) && (
-                <div key={question.id}>
-                  <p className="!mt-5">
-                    {question.text}
-                    {question.isRequired && (
-                      <span className="text-red-500"> * </span>
-                    )}
-                  </p>
-                  <QuestionInput
-                    question={question}
-                    valeur={reponses[question.id]}
-                    valeurComplementaire={reponses[`${question.id}_other`]}
-                    erreur={erreursFormulaire[question.id]}
-                    onChangement={gererChangementInput}
-                    onChangementCheckbox={gererChangementCheckbox}
-                    onEmailBlur={handleEmailBlur}
-                    statusColor={getStatusColor()}
-                  />
-                </div>
-              )
-          )}
+          {Array.isArray(sectionActuel.questions) &&
+            sectionActuel.questions.map(
+              (question) =>
+                doitAfficherQuestion(question) && (
+                  <div key={question.id}>
+                    <p className="!mt-5">
+                      {question.text}
+                      {question.isRequired && (
+                        <span className="text-red-500"> * </span>
+                      )}
+                    </p>
+                    <QuestionInput
+                      question={question}
+                      valeur={reponses[question.id]}
+                      valeurComplementaire={reponses[`${question.id}_other`]}
+                      erreur={erreursFormulaire[question.id]}
+                      onChangement={gererChangementInput}
+                      onChangementCheckbox={gererChangementCheckbox}
+                      onEmailBlur={handleEmailBlur}
+                      statusColor={getStatusColor()}
+                    />
+                  </div>
+                )
+            )}
         </div>
       </div>
     );
@@ -210,13 +207,11 @@ const Questionnaire = () => {
   // Bouton "Suivant" : Validation, vérification de l'unicité de l'email et redirection
   const boutonSuivant = async () => {
     // Bloquer la progression si l'email est dupliqué
-    if (reponses["3"]) {
+    if (reponses["1"]) {
       setIsVerifyingEmail(true);
       try {
         const response = await api.get(
-          `/responses?email=${reponses["3"]
-            .trim()
-            .toLowerCase()}`
+          `/responses?email=${reponses["1"].trim().toLowerCase()}`
         );
         if (response.data && response.data.length > 0) {
           setEmailDuplique(true);

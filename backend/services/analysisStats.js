@@ -34,9 +34,9 @@ export default {
       const budget = data["22"];
       const contact = data["24"];
       const canal = data["25"];
-      const email = data["3"];
-      const nom = data["1"];
-      const prenom = data["2"];
+      const email = data["1"];
+      const nom = data["2"];
+      const prenom = data["3"];
       const outils13 = data["13"];
       const outils14 = data["14"];
       const projets = data["7"];

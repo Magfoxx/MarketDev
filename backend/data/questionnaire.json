@@ -6,26 +6,26 @@
     "questions": [
       {
         "id": "1",
+        "text": "Quel est votre email ?",
+        "type": "email",
+        "isRequired": true,
+        "unique": true,
+        "placeholder": "Votre email"
+      },
+      {
+        "id": "2",
         "text": "Quel est votre nom ?",
         "type": "text",
         "isRequired": true,
         "placeholder": "Votre nom"
       },
       {
-        "id": "2",
+        "id": "3",
         "text": "Quel est votre prénom ?",
         "type": "text",
         "isRequired": true,
         "placeholder": "Votre prénom"
       },
-      {
-        "id": "3",
-        "text": "Quel est votre email ?",
-        "type": "email",
-        "isRequired": true,
-        "unique": true,
-        "placeholder": "Votre email"
-      }
     ]
   },
   {
