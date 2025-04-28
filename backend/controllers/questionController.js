@@ -50,6 +50,12 @@ export const insertQuestions = async (req, res) => {
         : [],
     }));
 
+    if (!sections.length) {
+      return res.status(400).json({
+        message: "Aucune section valide trouvée dans le fichier questionnaire.json."
+      });
+    }
+
     // Supprimer les anciennes sections de questions avant d'insérer les nouvelles
     await Question.deleteMany({});
     await Question.insertMany(sections);
@@ -58,7 +64,7 @@ export const insertQuestions = async (req, res) => {
       message: `${sections.length} sections de questions ajoutées avec succès !`
     });
   } catch (error) {
-    console.error("Erreur lors de l'insertion :", error.message);
+    console.error("Erreur lors de l'insertion des questions :", error);
     res.status(500).json({
       message: "Erreur lors de l'insertion des questions",
       error: error.message
