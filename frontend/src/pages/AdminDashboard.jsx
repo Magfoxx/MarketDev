@@ -24,13 +24,13 @@ const AdminDashboard = () => {
       try {
         const token = localStorage.getItem("adminToken");
         const [resStats, resDetails, resUsers] = await Promise.all([
-          api.get("/api/admin/stats", {
+          api.get("/admin/stats", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          api.get("/api/admin/stats/details", {
+          api.get("/admin/stats/details", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          api.get("/api/admin/users/details", {
+          api.get("/admin/users/details", {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);

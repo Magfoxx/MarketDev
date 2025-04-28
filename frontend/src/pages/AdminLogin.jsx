@@ -17,7 +17,7 @@ const AdminLogin = () => {
       if (!token) return;
 
       try {
-        await api.get("/api/admin/verify", {
+        await api.get("/admin/verify", {
           headers: { Authorization: `Bearer ${token}` },
         });
         navigate("/admin/dashboard");
@@ -47,7 +47,7 @@ const AdminLogin = () => {
     }
 
     try {
-      const response = await api.post("/api/admin/", {
+      const response = await api.post("/admin/", {
         email: formData.email.trim().toLowerCase(),
         password: formData.motDePasse,
       });
