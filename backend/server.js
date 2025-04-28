@@ -11,11 +11,15 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5001;
+const corsOptions = {
+  origin: "https://marketdev-uroz.onrender.com",
+  credentials: true,
+};
 
 connectDB();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use("/api/questions", questionRoutes);
 app.use("/api/responses", responseRoutes);
