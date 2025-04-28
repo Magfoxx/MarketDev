@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Title from "../components/Title";
 import { toast } from "react-toastify";
-import api from "../api/axios";
+import { axiosInstance as api } from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 const AdminLogin = () => {
+  // État pour stocker les données du formulaire de connexion
   const [formData, setFormData] = useState({ email: "", motDePasse: "" });
   const navigate = useNavigate();
 
+  // Vérifie si l'administrateur est déjà connecté à l'arrivée sur la page
   useEffect(() => {
     const checkIfLoggedIn = async () => {
       const token = localStorage.getItem("adminToken");
@@ -26,10 +28,12 @@ const AdminLogin = () => {
     checkIfLoggedIn();
   }, [navigate]);
 
+  // Met à jour les valeurs du formulaire lors de la saisie utilisateur
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Gère la soumission du formulaire de connexion
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -57,6 +61,7 @@ const AdminLogin = () => {
     }
   };
 
+  // Affichage du formulaire de connexion administrateur
   return (
     <div className="max-padd-container">
       <div className="text-center py-16">

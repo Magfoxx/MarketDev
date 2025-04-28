@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import api from "../../api/axios";
+import { axiosInstance as api } from "../../api/axios";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import QuestionInput from "./QuestionInput";
