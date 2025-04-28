@@ -6,11 +6,11 @@ import questionRoutes from "./routes/questionsRoutes.js";
 import responseRoutes from "./routes/responseRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 
-
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5001;
+
 const corsOptions = {
   origin: "https://marketdev-uroz.onrender.com",
   credentials: true,
@@ -20,6 +20,14 @@ connectDB();
 
 app.use(express.json());
 app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://marketdev-uroz.onrender.com");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
 
 app.use("/api/questions", questionRoutes);
 app.use("/api/responses", responseRoutes);
